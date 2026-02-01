@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>현송교육문화재단 장학생 커뮤니티</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #01B18B;
+            --lime: rgba(228, 254, 243, 0.8);
+            --green-light: #EDF6E8;
+            --black: #222222;
+            --gray-dark: #333333;
+            --gray: #666666;
+            --gray-light: #999999;
+            --gray-pale: #CCCCCC;
+            --gray-border: #E5E5E5;
+            --bg: #F5F5F5;
+            --white: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--black);
+            line-height: 1.6;
+            background: var(--white);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* ========================================
+           Header
+           ======================================== */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.03);
+        }
+
+        .header-inner {
+            max-width: 1310px;
+            margin: 0 auto;
+            padding: 0 40px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            gap: 8px;
+        }
+
+        .logo-img { height: 40px; width: auto; }
+
+        .logo-text {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .main-nav { display: flex; gap: 50px; }
+
+        .main-nav > .nav-item { position: relative; }
+
+        .main-nav > .nav-item > a {
+            text-decoration: none;
+            color: var(--black);
+            font-size: 16px;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.2s;
+            display: block;
+            padding: 10px 0;
+        }
+
+        .main-nav > .nav-item > a:hover,
+        .main-nav > .nav-item > a.active {
+            color: #01B18B;
+        }
+
+        .main-nav > .nav-item > a.active::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            right: -6px;
+            width: 6px;
+            height: 6px;
+            background: #01B18B;
+            border-radius: 50%;
+        }
+
+        .sub-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--white);
+            min-width: 180px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            border-radius: 12px;
+            padding: 12px 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+            z-index: 100;
+        }
+
+        .nav-item:hover .sub-menu { opacity: 1; visibility: visible; }
+
+        .sub-menu a {
+            display: block;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .sub-menu a:hover {
+            background: var(--green-light);
+            color: #01B18B;
+        }
+
+        .header-utils {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-utils a {
+            color: var(--black);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+        }
+
+        .header-utils svg { width: 22px; height: 22px; }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 36px;
+            height: 36px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--black);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .hamburger span:nth-child(1) { margin-bottom: 6px; }
+        .hamburger span:nth-child(3) { margin-top: 6px; }
+
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--white);
+            z-index: 999;
+            padding: 40px 20px;
+            overflow-y: auto;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav.active { transform: translateX(0); }
+
+        .mobile-nav a {
+            display: block;
+            padding: 14px 0;
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--black);
+            text-decoration: none;
+            border-bottom: 1px solid var(--gray-border);
+            transition: color 0.2s;
+        }
+
+        .mobile-nav a:hover,
+        .mobile-nav a.active { color: #01B18B; }
+
+        .mobile-nav-utils {
+            display: flex;
+            gap: 16px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gray-border);
+        }
+
+        .mobile-nav-utils a {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 0;
+            font-size: 15px;
+            color: var(--gray);
+            border-bottom: none;
+        }
+
+        .mobile-nav-utils svg { width: 20px; height: 20px; }
+
+        body.menu-open { overflow: hidden; }
+
+        /* ========================================
+           Banner Slider
+           ======================================== */
+        .banner-slider {
+            position: relative;
+            width: 100%;
+            height: 700px;
+            margin-top: 70px;
+            overflow: hidden;
+        }
+
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 305px;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .banner-slide-1 {
+            background: linear-gradient(256.821deg, rgb(176, 241, 183) 7.5959%, rgb(90, 214, 137) 25.356%, rgb(27, 181, 145) 87.901%);
+        }
+
+        .banner-slide-2 {
+            background: linear-gradient(252.204deg, rgb(88, 213, 138) 1.7226%, rgb(1, 197, 237) 87.766%);
+        }
+
+        .banner-slide-3 {
+            background: linear-gradient(250.845deg, rgb(255, 202, 204) 0.71727%, rgb(23, 138, 238) 98.632%);
+        }
+
+        .banner-content {
+            max-width: 1310px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .banner-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: flex-start;
+            justify-content: flex-end;
+            padding-bottom: 80px;
+        }
+
+        .banner-title {
+            font-size: 44px;
+            font-weight: 700;
+            color: white;
+            line-height: 1.5;
+            letter-spacing: -0.02em;
+        }
+
+        .banner-controls {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .banner-indicator {
+            font-size: 16px;
+            font-weight: 500;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .banner-progress {
+            width: 293px;
+            height: 10px;
+            background: rgba(62, 58, 57, 0.1);
+            border: 0.4px solid white;
+            position: relative;
+        }
+
+        .banner-progress-fill {
+            height: 100%;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .banner-arrows {
+            display: flex;
+            gap: 14px;
+        }
+
+        .banner-arrow {
+            width: 30px;
+            height: 30px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.2s;
+        }
+
+        .banner-arrow:hover {
+            opacity: 0.8;
+        }
+
+        .banner-arrow svg {
+            width: 12px;
+            height: 12px;
+        }
+
+        .banner-image {
+            width: 661px;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner-image img {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: none;
+            height: auto;
+        }
+
+        /* ========================================
+           Main Content
+           ======================================== */
+        .main-content {
+            flex: 1;
+        }
+
+        .content-section {
+            max-width: 1310px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        .section-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .content-box {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .box-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .box-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--black);
+        }
+
+        .more-link {
+            font-size: 14px;
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .more-link:hover {
+            color: var(--primary);
+        }
+
+        .list-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--gray-border);
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item-title {
+            font-size: 15px;
+            color: var(--black);
+            text-decoration: none;
+            transition: color 0.2s;
+            flex: 1;
+        }
+
+        .list-item-title:hover {
+            color: #17A6ED;
+        }
+
+        .list-item-date {
+            font-size: 13px;
+            color: var(--gray-light);
+            margin-left: 16px;
+        }
+
+        .list-item-period {
+            font-size: 13px;
+            color: var(--gray);
+            margin-left: 16px;
+        }
+
+        .list-item-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-left: 12px;
+        }
+
+        .badge-active {
+            background: #333;
+            color: white;
+        }
+
+        .badge-closed {
+            background: var(--gray-light);
+            color: white;
+        }
+
+        /* 바로가기 그리드 */
+        .shortcut-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .shortcut-item {
+            background: #E8F5E9;
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.2s;
+        }
+
+        .shortcut-item:hover {
+            transform: translateY(-4px);
+        }
+
+        .shortcut-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 16px;
+        }
+
+        .shortcut-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .shortcut-text {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--black);
+        }
+
+        /* ========================================
+           Footer
+           ======================================== */
+        .footer {
+            background: var(--gray-dark);
+            padding: 50px 40px;
+            margin-top: auto;
+        }
+
+        .footer-inner { max-width: 1310px; margin: 0 auto; }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 30px;
+        }
+
+        .footer-logo { font-size: 16px; font-weight: 700; color: var(--white); }
+
+        .footer-nav { display: flex; gap: 60px; }
+
+        .footer-nav-group a {
+            display: block;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+        }
+
+        .footer-nav-group a:hover { color: var(--white); }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .footer-info {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.8;
+        }
+
+        .footer-links { display: flex; gap: 20px; }
+
+        .footer-links a {
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover { color: var(--white); }
+
+        .footer-copyright {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-copyright p { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+        .family-site {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.5);
+            padding: 10px 16px;
+            font-size: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* ========================================
+           Responsive
+           ======================================== */
+        @media (max-width: 1024px) {
+            .header-inner { padding: 0 20px; }
+            .main-nav { display: none; }
+            .header-utils { display: none; }
+            .hamburger { display: flex; }
+            .mobile-nav { display: block; }
+            .footer-nav { display: none; }
+            .banner-slider { height: 500px; }
+            .banner-slide { padding: 0 40px; }
+            .banner-title { font-size: 32px; }
+            .section-row { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .banner-slider { height: 400px; margin-top: 70px; }
+            .banner-slide { padding: 0 20px; }
+            .banner-title { font-size: 24px; }
+            .banner-image { display: none; }
+            .content-section { padding: 40px 20px; }
+            .content-box { padding: 24px; }
+            .shortcut-grid { grid-template-columns: 1fr; }
+            .footer { padding: 40px 20px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="https://github.com/sykim1017/hyunsong/blob/main/logo_%E1%84%92%E1%85%A7%E1%86%AB%E1%84%89%E1%85%A9%E1%86%BC%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%E1%84%86%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%84%8C%E1%85%A2%E1%84%83%E1%85%A1%E1%86%AB.png?raw=true" alt="현송교육문화재단" class="logo-img">
+                <span class="logo-text">커뮤니티</span>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="scholarship-search.html">장학생 찾기</a>
+                </div>
+                <div class="nav-item">
+                    <a href="hero.html">현송 영웅</a>
+                </div>
+                <div class="nav-item">
+                    <a href="board.html">자유게시판</a>
+                </div>
+                <div class="nav-item">
+                    <a href="gallery.html">장학 갤러리</a>
+                </div>
+                <div class="nav-item">
+                    <a href="community.html">커뮤니티</a>
+                    <div class="sub-menu">
+                        <a href="community.html#notice">공지사항</a>
+                        <a href="community.html#news">재단소식</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-utils">
+                <a href="login.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                    </svg>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="scholarship-search.html">장학생 찾기</a>
+        <a href="hero.html">현송 영웅</a>
+        <a href="board.html">자유게시판</a>
+        <a href="gallery.html">장학 갤러리</a>
+        <a href="community.html">커뮤니티</a>
+        <div class="mobile-nav-utils">
+            <a href="login.html">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                로그인
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                </svg>
+                ENG
+            </a>
+        </div>
+    </nav>
+
+    <!-- Banner Slider -->
+    <div class="banner-slider">
+        <!-- Slide 1 -->
+        <div class="banner-slide banner-slide-1 active">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h1 class="banner-title">
+                        현송, 커뮤니티<br>
+                        장학생이 함께 성장하는 곳
+                    </h1>
+                    <div class="banner-controls">
+                        <span class="banner-indicator">01 / 03</span>
+                        <div class="banner-progress">
+                            <div class="banner-progress-fill" style="width: 33.33%;"></div>
+                        </div>
+                        <div class="banner-arrows">
+                            <button class="banner-arrow banner-prev" aria-label="이전">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <button class="banner-arrow banner-next" aria-label="다음">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-image">
+                    <img src="publish/banner1-img.png" alt="배너1" style="width: 600px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="banner-slide banner-slide-2">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h1 class="banner-title">
+                        연결로 이어지는 성장,<br>
+                        현송 장학생 네트워크
+                    </h1>
+                    <div class="banner-controls">
+                        <span class="banner-indicator">02 / 03</span>
+                        <div class="banner-progress">
+                            <div class="banner-progress-fill" style="width: 66.66%;"></div>
+                        </div>
+                        <div class="banner-arrows">
+                            <button class="banner-arrow banner-prev" aria-label="이전">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <button class="banner-arrow banner-next" aria-label="다음">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-image">
+                    <img src="publish/banner2-img.png" alt="배너2" style="width: 600px;">
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="banner-slide banner-slide-3">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h1 class="banner-title">
+                        현송 장학생의<br>
+                        오늘과 내일을 잇다
+                    </h1>
+                    <div class="banner-controls">
+                        <span class="banner-indicator">03 / 03</span>
+                        <div class="banner-progress">
+                            <div class="banner-progress-fill" style="width: 100%;"></div>
+                        </div>
+                        <div class="banner-arrows">
+                            <button class="banner-arrow banner-prev" aria-label="이전">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                            <button class="banner-arrow banner-next" aria-label="다음">
+                                <svg fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="banner-image">
+                    <img src="publish/banner3-img.png" alt="배너3" style="width: 600px;">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="content-section">
+            <!-- BOX1: 공지사항 + 재단소식 -->
+            <div class="section-row">
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2 class="box-title">현송 공지사항</h2>
+                        <a href="community.html#notice" class="more-link">+ 더보기</a>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">현송재단 홈페이지 점검 안내입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">현송재단 홈페이지 점검 안내입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">현송재단 홈페이지 점검 안내입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">현송재단 홈페이지 점검 안내입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2 class="box-title">현송 재단소식</h2>
+                        <a href="community.html#news" class="more-link">+ 더보기</a>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">[좌담회] 2025 하반기 좌담회 참가신청 모집합니다.</a>
+                        <span class="list-item-period">모집 기간   2025.11.12~2025.12.25</span>
+                        <span class="list-item-badge badge-active">접수중</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">[좌담회] 2025 하반기 좌담회 참가신청 모집합니다.</a>
+                        <span class="list-item-period">모집 기간   2025.11.12~2025.11.25</span>
+                        <span class="list-item-badge badge-closed">접수마감</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">[좌담회] 2025 하반기 좌담회 참가신청 모집합니다.</a>
+                        <span class="list-item-period">모집 기간   2025.11.12~2025.11.20</span>
+                        <span class="list-item-badge badge-closed">접수마감</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">[좌담회] 2025 하반기 좌담회 참가신청 모집합니다.</a>
+                        <span class="list-item-period">모집 기간   2025.11.12~2025.11.13</span>
+                        <span class="list-item-badge badge-closed">접수마감</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOX2: 자유게시판 + 바로가기 -->
+            <div class="section-row">
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2 class="box-title">자유게시판 (통합)</h2>
+                        <a href="board.html" class="more-link">+ 더보기</a>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">자유게시판입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">자유게시판입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">자유게시판입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                    <div class="list-item">
+                        <a href="#" class="list-item-title">자유게시판입니다.</a>
+                        <span class="list-item-date">2025.04.11</span>
+                    </div>
+                </div>
+
+                <div class="content-box">
+                    <div class="box-header">
+                        <h2 class="box-title" style="visibility: hidden;">바로가기</h2>
+                    </div>
+                    <div class="shortcut-grid">
+                        <a href="scholarship-search.html" class="shortcut-item">
+                            <div class="shortcut-icon">
+                                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 10C20 10 12 18 12 28C12 38 20 46 30 46C40 46 48 38 48 28C48 18 40 10 30 10Z" fill="#2E7D32"/>
+                                    <path d="M30 20C24 20 20 24 20 30C20 36 24 40 30 40C36 40 40 36 40 30C40 24 36 20 30 20Z" fill="#4CAF50"/>
+                                </svg>
+                            </div>
+                            <div class="shortcut-text">장학생 찾기</div>
+                        </a>
+                        <a href="hero.html" class="shortcut-item">
+                            <div class="shortcut-icon">
+                                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 10C20 10 12 18 12 28C12 38 20 46 30 46C40 46 48 38 48 28C48 18 40 10 30 10Z" fill="#2E7D32"/>
+                                    <path d="M30 20C24 20 20 24 20 30C20 36 24 40 30 40C36 40 40 36 40 30C40 24 36 20 30 20Z" fill="#4CAF50"/>
+                                </svg>
+                            </div>
+                            <div class="shortcut-text">현송 영웅</div>
+                        </a>
+                        <a href="gallery.html" class="shortcut-item">
+                            <div class="shortcut-icon">
+                                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 10C20 10 12 18 12 28C12 38 20 46 30 46C40 46 48 38 48 28C48 18 40 10 30 10Z" fill="#2E7D32"/>
+                                    <path d="M30 20C24 20 20 24 20 30C20 36 24 40 30 40C36 40 40 36 40 30C40 24 36 20 30 20Z" fill="#4CAF50"/>
+                                </svg>
+                            </div>
+                            <div class="shortcut-text">장학생 갤러리</div>
+                        </a>
+                        <a href="#" class="shortcut-item">
+                            <div class="shortcut-icon">
+                                <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M30 10C20 10 12 18 12 28C12 38 20 46 30 46C40 46 48 38 48 28C48 18 40 10 30 10Z" fill="#2E7D32"/>
+                                    <path d="M30 20C24 20 20 24 20 30C20 36 24 40 30 40C36 40 40 36 40 30C40 24 36 20 30 20Z" fill="#4CAF50"/>
+                                </svg>
+                            </div>
+                            <div class="shortcut-text">장학증명 신청하기</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-logo">현송교육문화재단</div>
+                <div class="footer-nav">
+                    <div class="footer-nav-group"><a href="scholarship-search.html">장학생 찾기</a></div>
+                    <div class="footer-nav-group"><a href="hero.html">현송 영웅</a></div>
+                    <div class="footer-nav-group"><a href="board.html">자유게시판</a></div>
+                    <div class="footer-nav-group"><a href="gallery.html">장학 갤러리</a></div>
+                    <div class="footer-nav-group"><a href="community.html">커뮤니티</a></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">서울 구로구 경인로 661, 101동 1201~1203호 (우)08208|TEL : 02-2612-7150, 7140</div>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 HYUNSONG EDUCATIONAL & CULTURAL FOUNDATION. ALL RIGHTS RESERVED.</p>
+                <button class="family-site">패밀리사이트 &rarr;</button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Banner Slider
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.banner-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto slide every 5 seconds
+        setInterval(nextSlide, 5000);
+
+        // Button controls
+        document.querySelectorAll('.banner-next').forEach(btn => {
+            btn.addEventListener('click', nextSlide);
+        });
+
+        document.querySelectorAll('.banner-prev').forEach(btn => {
+            btn.addEventListener('click', prevSlide);
+        });
+
+        // Mobile navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+    </script>
+</body>
+</html>
