@@ -257,7 +257,7 @@
         }
 
         .page-title {
-            font-size: 28px;
+            font-size: 34px;
             font-weight: 700;
             color: var(--white);
             text-align: center;
@@ -447,6 +447,12 @@
             line-height: 1.2;
         }
 
+        /* Pagination */
+        .board-pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 60px; }
+        .board-pagination a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; color: var(--gray); text-decoration: none; transition: all 0.2s; }
+        .board-pagination a:hover { border-color: #17A6ED; color: #17A6ED; }
+        .board-pagination a.active { background: #17A6ED; border-color: #17A6ED; color: var(--white); }
+
 
         /* ========================================
            Footer
@@ -538,7 +544,7 @@
         }
 
         @media (max-width: 768px) {
-            .page-title { font-size: 24px; }
+            .page-title { font-size: 28px; }
             .scholarship-hero { padding: 30px 20px 40px; }
             .content-section { padding: 0 20px 40px; }
             .search-bar { height: 50px; }
@@ -882,6 +888,14 @@
                         <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
+            </div>
+
+            <div class="board-pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">&raquo;</a>
             </div>
             </div>
         </div>
