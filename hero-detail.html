@@ -57,32 +57,46 @@
         body.menu-open { overflow: hidden; }
         .main-content { padding-top: 70px; }
 
+        /* Breadcrumb */
+        .breadcrumb { padding: 20px 0; background: var(--white); }
+        .breadcrumb-inner { max-width: 1310px; margin: 0 auto; padding: 0 40px; display: flex; align-items: center; gap: 12px; }
+        .breadcrumb-home { color: #01B18B; display: flex; align-items: center; }
+        .breadcrumb-home:hover { opacity: 0.8; }
+        .breadcrumb-divider { color: var(--gray-border); font-size: 14px; }
+        .breadcrumb-current { font-size: 14px; color: var(--gray-light); }
+
         /* Page Header */
-        .page-header { background: var(--white); padding: 40px 40px; text-align: center; border-bottom: 1px solid var(--gray-border); }
+        .page-header { background: var(--white); padding: 20px 40px 40px; text-align: center; }
         .page-header-inner { max-width: 1310px; margin: 0 auto; }
         .page-title { font-size: 34px; font-weight: 700; color: #222222; }
 
-        .content-section { max-width: 1310px; margin: 0 auto; padding: 60px 40px 100px; }
+        .content-section { max-width: 1310px; margin: 0 auto; padding: 40px 40px 100px; }
 
-        /* Hero Profile */
-        .hero-profile { display: flex; gap: 40px; padding-bottom: 60px; border-bottom: 1px solid var(--gray-border); margin-bottom: 60px; }
-        .hero-profile-photo { width: 340px; height: 195px; background: var(--gray-pale); border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 20px; color: var(--gray-light); overflow: hidden; }
+        /* Hero Profile Card */
+        .hero-profile { display: flex; gap: 40px; padding: 40px; background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); margin-bottom: 40px; }
+        .hero-profile-photo { width: 280px; height: 340px; background: var(--bg); border-radius: 12px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .hero-profile-photo svg { width: 48px; height: 48px; fill: var(--gray-pale); }
         .hero-profile-photo img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-profile-content { flex: 1; }
-        .hero-profile-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px; }
-        .hero-profile-title { font-size: 28px; font-weight: 700; color: #222222; }
-        .hero-email-button { padding: 10px 24px; background: var(--gray-pale); color: var(--gray-dark); border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
-        .hero-email-button:hover { background: var(--gray-light); color: var(--white); }
-        .hero-profile-info { display: flex; flex-direction: column; gap: 12px; }
-        .hero-profile-info-item { font-size: 16px; color: var(--gray-dark); }
-        .hero-profile-info-label { font-weight: 600; color: #222222; margin-right: 8px; }
+        .hero-profile-content { flex: 1; display: flex; flex-direction: column; }
+        .hero-profile-name-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .hero-profile-name { font-size: 24px; font-weight: 700; color: #222222; }
+        .hero-email-btn { width: 32px; height: 32px; border-radius: 8px; border: 1px solid var(--gray-border); background: var(--white); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.2s; flex-shrink: 0; text-decoration: none; }
+        .hero-email-btn:hover { background: var(--lime); border-color: var(--primary); }
+        .hero-email-btn svg { width: 16px; height: 16px; color: var(--gray); transition: color 0.2s; }
+        .hero-email-btn:hover svg { color: var(--primary); }
+        .hero-profile-subtitle { font-size: 15px; color: var(--primary); font-weight: 500; margin-bottom: 24px; }
+        .hero-profile-info { display: flex; flex-direction: column; gap: 12px; padding-top: 20px; border-top: 1px solid var(--gray-border); }
+        .hero-profile-info-item { display: flex; font-size: 14px; color: var(--gray-dark); }
+        .hero-profile-info-label { width: 80px; font-weight: 600; color: #222222; flex-shrink: 0; }
+        .hero-profile-info-value { color: var(--gray-dark); }
 
         /* Hero Content */
-        .hero-content-section { padding: 40px 0; }
-        .hero-description { font-size: 16px; line-height: 1.8; color: var(--black); text-align: center; }
+        .hero-content-section { background: var(--white); border-radius: 16px; box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06); padding: 48px; margin-bottom: 40px; }
+        .hero-content-title { font-size: 18px; font-weight: 700; color: #222222; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid var(--gray-border); }
+        .hero-description { font-size: 15px; line-height: 2; color: var(--gray-dark); }
 
         /* Back Button */
-        .back-button-wrapper { text-align: center; margin-top: 80px; }
+        .back-button-wrapper { text-align: center; margin-top: 20px; }
         .back-button { display: inline-block; padding: 14px 48px; background: #1F2657; color: var(--white); border: none; border-radius: 50px; font-size: 16px; font-weight: 600; cursor: pointer; text-decoration: none; transition: opacity 0.2s; }
         .back-button:hover { opacity: 0.9; }
 
@@ -111,13 +125,15 @@
             .hamburger { display: flex; }
             .mobile-nav { display: block; }
             .footer-nav { display: none; }
-            .hero-profile { flex-direction: column; }
-            .hero-profile-photo { width: 100%; }
+            .hero-profile { flex-direction: column; padding: 30px; }
+            .hero-profile-photo { width: 100%; height: 300px; }
         }
         @media (max-width: 768px) {
-            .content-section { padding: 40px 20px; }
-            .hero-profile-title { font-size: 22px; }
-            .hero-profile-header { flex-direction: column; gap: 16px; }
+            .content-section { padding: 20px 20px 80px; }
+            .hero-profile { padding: 24px; }
+            .hero-profile-photo { height: 240px; }
+            .hero-profile-name { font-size: 20px; }
+            .hero-content-section { padding: 32px 24px; }
             .footer { padding: 40px 20px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
             .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -195,6 +211,19 @@
     </nav>
 
     <main class="main-content">
+        <div class="breadcrumb">
+            <div class="breadcrumb-inner">
+                <a href="index.html" class="breadcrumb-home">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
+                        <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+                        <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+                    </svg>
+                </a>
+                <span class="breadcrumb-divider">|</span>
+                <span class="breadcrumb-current">현송 영웅</span>
+            </div>
+        </div>
+
         <div class="page-header">
             <div class="page-header-inner">
                 <h1 class="page-title">현송 영웅</h1>
@@ -202,28 +231,56 @@
         </div>
 
         <div class="content-section">
+            <!-- 프로필 카드 -->
             <div class="hero-profile">
-                <div class="hero-profile-photo">사진</div>
+                <div class="hero-profile-photo">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                    </svg>
+                </div>
                 <div class="hero-profile-content">
-                    <div class="hero-profile-header">
-                        <h2 class="hero-profile-title">2025학기 자연과학 박사학위 홍길동</h2>
-                        <button class="hero-email-button">이메일 아이콘</button>
+                    <div class="hero-profile-name-row">
+                        <h2 class="hero-profile-name">홍길동</h2>
+                        <a href="mailto:email@naver.com" class="hero-email-btn" title="이메일 보내기">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                            </svg>
+                        </a>
                     </div>
+                    <div class="hero-profile-subtitle">2025학기 자연과학 박사학위 취득</div>
                     <div class="hero-profile-info">
                         <div class="hero-profile-info-item">
-                            <span class="hero-profile-info-label">대학교 :</span>
-                            <span>서울대학교</span>
+                            <span class="hero-profile-info-label">대학교</span>
+                            <span class="hero-profile-info-value">서울대학교</span>
                         </div>
                         <div class="hero-profile-info-item">
-                            <span class="hero-profile-info-label">학과 :</span>
-                            <span>생명공학과</span>
+                            <span class="hero-profile-info-label">학과</span>
+                            <span class="hero-profile-info-value">생명공학과</span>
+                        </div>
+                        <div class="hero-profile-info-item">
+                            <span class="hero-profile-info-label">학번</span>
+                            <span class="hero-profile-info-value">2016학번</span>
+                        </div>
+                        <div class="hero-profile-info-item">
+                            <span class="hero-profile-info-label">장학기간</span>
+                            <span class="hero-profile-info-value">2016 ~ 2025</span>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- 상세 본문 -->
             <div class="hero-content-section">
-                <p class="hero-description">설명글~~~</p>
+                <h3 class="hero-content-title">소개</h3>
+                <p class="hero-description">
+                    2016학번으로 서울대학교 생명공학과에 입학하여, 학부 과정을 우수한 성적으로 마친 뒤 대학원에 진학하였습니다.
+                    <br><br>
+                    석박통합과정을 거치며 유전체 분석 분야에서 다수의 논문을 발표하였고, 국제 학술대회에서 우수 발표상을 수상한 바 있습니다.
+                    <br><br>
+                    현송교육문화재단의 장학 지원 덕분에 학비 걱정 없이 연구에 전념할 수 있었으며, 2025년 2월 자연과학 박사학위를 취득하였습니다. 현재는 국내 바이오 연구소에서 연구원으로 활동하고 있습니다.
+                    <br><br>
+                    재단의 지원에 깊이 감사드리며, 앞으로도 사회에 기여하는 연구자가 되겠습니다.
+                </p>
             </div>
 
             <div class="back-button-wrapper">

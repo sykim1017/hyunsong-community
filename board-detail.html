@@ -73,30 +73,64 @@
 
         .content-section { max-width: 1310px; margin: 0 auto; padding: 40px 40px 100px; }
 
+        /* Post Category Path */
+        .post-category-path { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 20px; }
+        .post-category-path span { color: var(--gray-light); }
+
         /* Post Detail */
-        .post-header { border-bottom: 2px solid #222222; padding-bottom: 20px; margin-bottom: 40px; }
-        .post-title { font-size: 28px; font-weight: 700; color: #222222; text-align: center; margin-bottom: 20px; }
-        .post-meta { display: flex; justify-content: flex-end; align-items: center; gap: 20px; font-size: 14px; color: var(--gray); }
-        .post-content { min-height: 300px; padding: 40px 0; font-size: 16px; line-height: 1.8; color: var(--black); text-align: center; }
+        .post-header { border-top: 2px solid #222222; margin-bottom: 0; }
+        .post-title { font-size: 18px; font-weight: 700; color: #222222; padding: 20px 0; border-bottom: 1px solid var(--gray-border); }
+        .post-meta { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--gray-border); font-size: 13px; color: var(--gray); gap: 0; }
+        .post-meta-item { display: flex; align-items: center; padding: 0 20px; border-right: 1px solid var(--gray-border); }
+        .post-meta-item:first-child { padding-left: 0; }
+        .post-meta-item:last-child { border-right: none; }
+        .post-meta-label { font-weight: 600; color: var(--gray-dark); margin-right: 8px; }
+        .post-meta-value { color: var(--gray); }
+        .post-content { min-height: 200px; padding: 40px 0; font-size: 16px; line-height: 1.8; color: var(--black); text-align: center; border-bottom: 2px solid #222222; }
+
+        /* Like Button */
+        .post-actions { display: flex; justify-content: center; padding: 24px 0; border-bottom: 1px solid var(--gray-border); }
+        .like-button { display: flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--gray-border); border-radius: 50px; cursor: pointer; padding: 8px 18px; transition: all 0.2s; }
+        .like-button:hover { border-color: #EF4444; }
+        .like-button svg { width: 18px; height: 18px; }
+        .like-button .heart-outline { display: block; stroke: var(--gray-pale); fill: none; }
+        .like-button .heart-fill { display: none; fill: #EF4444; }
+        .like-button.active { border-color: #EF4444; }
+        .like-button.active .heart-outline { display: none; }
+        .like-button.active .heart-fill { display: block; }
+        .like-count { font-size: 13px; color: var(--gray); font-weight: 500; }
+        .like-button.active .like-count { color: #EF4444; }
 
         /* Comments */
-        .comments-section { margin-top: 60px; border-top: 1px solid var(--gray-border); padding-top: 40px; }
-        .comments-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
-        .comments-title { font-size: 18px; font-weight: 600; color: #222222; }
-        .like-button { background: none; border: none; cursor: pointer; padding: 8px; display: flex; align-items: center; justify-content: center; transition: transform 0.2s; }
-        .like-button:hover { transform: scale(1.1); }
-        .like-button svg { width: 28px; height: 28px; }
-        .like-button.active svg { fill: #EF4444; stroke: #EF4444; }
-        .comment-item { border-bottom: 1px solid var(--gray-border); padding: 20px 0; }
-        .comment-author { font-size: 16px; font-weight: 600; color: #222222; margin-bottom: 8px; }
-        .comment-text { font-size: 15px; color: var(--gray-dark); line-height: 1.6; }
+        .comments-section { margin-top: 0; }
+        .comments-header { display: flex; align-items: center; gap: 6px; padding: 20px 0 16px; }
+        .comments-title { font-size: 16px; font-weight: 700; color: #222222; }
+        .comments-count { font-size: 16px; font-weight: 700; color: var(--primary); }
+
+        .comment-list { }
+        .comment-item { padding: 20px 0; border-top: 1px solid var(--gray-border); }
+        .comment-item-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .comment-author-info { display: flex; align-items: center; gap: 10px; }
+        .comment-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .comment-avatar svg { width: 14px; height: 14px; fill: var(--gray-pale); }
+        .comment-author { font-size: 14px; font-weight: 600; color: #222222; }
+        .comment-date { font-size: 12px; color: var(--gray-light); }
+        .comment-actions { display: flex; gap: 12px; }
+        .comment-action-btn { background: none; border: none; font-size: 12px; color: var(--gray-light); cursor: pointer; padding: 0; transition: color 0.2s; }
+        .comment-action-btn:hover { color: var(--primary); }
+        .comment-text { font-size: 14px; color: var(--gray-dark); line-height: 1.7; padding-left: 38px; }
+
+        /* Reply (대댓글) */
+        .comment-reply { margin-left: 38px; padding: 16px 20px; background: var(--bg); border-radius: 8px; margin-top: 12px; }
+        .comment-reply .comment-item-header { margin-bottom: 6px; }
+        .comment-reply .comment-text { padding-left: 0; font-size: 13px; }
 
         /* Comment Form */
-        .comment-form { margin-top: 40px; padding: 30px; background: #FAFAFA; border-radius: 12px; }
-        .comment-form-title { font-size: 16px; font-weight: 600; color: #222222; margin-bottom: 16px; }
-        .comment-input { width: 100%; min-height: 120px; padding: 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 15px; font-family: 'Pretendard', sans-serif; resize: vertical; }
+        .comment-form { margin-top: 8px; padding: 20px; background: var(--bg); border-radius: 12px; }
+        .comment-input { width: 100%; min-height: 80px; padding: 14px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; font-family: 'Pretendard', sans-serif; resize: vertical; background: var(--white); color: var(--black); }
         .comment-input:focus { outline: none; border-color: var(--primary); }
-        .comment-submit { display: block; margin-left: auto; margin-top: 16px; padding: 12px 32px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+        .comment-form-footer { display: flex; justify-content: flex-end; margin-top: 12px; }
+        .comment-submit { padding: 10px 24px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
         .comment-submit:hover { opacity: 0.9; }
 
         /* Footer */
@@ -221,46 +255,135 @@
             </div>
         </div>
 
-        <div class="page-header">
-            <div class="page-header-inner">
-                <h1 class="page-title">자유게시판</h1>
-            </div>
-        </div>
+        <!-- page-header removed on detail page -->
 
         <div class="content-section">
+            <div class="post-category-path">통합게시판 <span>&gt;</span> 분류명</div>
+
             <article class="post-detail">
                 <div class="post-header">
-                    <h2 class="post-title">자유 게시판 제목</h2>
+                    <h2 class="post-title">장학생 여러분 안녕하세요! 처음 가입했습니다.</h2>
                     <div class="post-meta">
-                        <span>2025-10-15</span>
-                        <span>홍길동</span>
+                        <div class="post-meta-item">
+                            <span class="post-meta-label">작성자</span>
+                            <span class="post-meta-value">홍길동</span>
+                        </div>
+                        <div class="post-meta-item">
+                            <span class="post-meta-label">작성일</span>
+                            <span class="post-meta-value">2025.04.15</span>
+                        </div>
+                        <div class="post-meta-item">
+                            <span class="post-meta-label">조회수</span>
+                            <span class="post-meta-value">267</span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="post-content">
-                    <p>공지에 대한 설명글을 작성해주세요.</p>
+                    <p>안녕하세요, 현송교육문화재단 장학생으로 선발된 홍길동입니다.<br>앞으로 커뮤니티에서 여러 장학생분들과 소통하고 싶습니다.<br>잘 부탁드립니다!</p>
                 </div>
             </article>
 
+            <!-- 좋아요 -->
+            <div class="post-actions">
+                <button class="like-button" id="likeButton">
+                    <svg class="heart-outline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                    </svg>
+                    <svg class="heart-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                    </svg>
+                    <span class="like-count" id="likeCount">12</span>
+                </button>
+            </div>
+
+            <!-- 댓글 -->
             <div class="comments-section">
                 <div class="comments-header">
-                    <h3 class="comments-title">댓글 1</h3>
-                    <button class="like-button" id="likeButton">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                        </svg>
-                    </button>
+                    <h3 class="comments-title">댓글</h3>
+                    <span class="comments-count">3</span>
                 </div>
 
-                <div class="comment-item">
-                    <div class="comment-author">남희정</div>
-                    <div class="comment-text">너무 좋은 꿀팁인것 같아요!!!</div>
+                <div class="comment-list">
+                    <div class="comment-item">
+                        <div class="comment-item-header">
+                            <div class="comment-author-info">
+                                <div class="comment-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="comment-author">남희정</span>
+                                <span class="comment-date">2025.04.15</span>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn">답글</button>
+                                <button class="comment-action-btn">신고</button>
+                            </div>
+                        </div>
+                        <div class="comment-text">너무 좋은 꿀팁인것 같아요!!!</div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-item-header">
+                            <div class="comment-author-info">
+                                <div class="comment-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="comment-author">김영수</span>
+                                <span class="comment-date">2025.04.15</span>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn">답글</button>
+                                <button class="comment-action-btn">신고</button>
+                            </div>
+                        </div>
+                        <div class="comment-text">저도 같은 생각입니다. 좋은 정보 감사합니다.</div>
+
+                        <!-- 대댓글 -->
+                        <div class="comment-reply">
+                            <div class="comment-item-header">
+                                <div class="comment-author-info">
+                                    <div class="comment-avatar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="comment-author">홍길동</span>
+                                    <span class="comment-date">2025.04.16</span>
+                                </div>
+                            </div>
+                            <div class="comment-text">감사합니다! 앞으로도 좋은 정보 공유할게요.</div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-item-header">
+                            <div class="comment-author-info">
+                                <div class="comment-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="comment-author">이수진</span>
+                                <span class="comment-date">2025.04.16</span>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn">답글</button>
+                                <button class="comment-action-btn">신고</button>
+                            </div>
+                        </div>
+                        <div class="comment-text">혹시 관련 자료 공유 가능하실까요? 저도 관심이 많습니다.</div>
+                    </div>
                 </div>
 
                 <div class="comment-form">
-                    <h4 class="comment-form-title">댓글 작성</h4>
-                    <textarea class="comment-input" placeholder="댓글 입력 창"></textarea>
-                    <button class="comment-submit">작성하기</button>
+                    <textarea class="comment-input" placeholder="댓글을 입력하세요"></textarea>
+                    <div class="comment-form-footer">
+                        <button class="comment-submit">등록</button>
+                    </div>
                 </div>
             </div>
         </div>

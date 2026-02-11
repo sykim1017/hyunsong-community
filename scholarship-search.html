@@ -241,121 +241,99 @@
             padding-top: 70px;
         }
 
-        /* Breadcrumb */
-        .breadcrumb {
-            padding: 20px 0;
-            background: var(--white);
+        /* Background Wrapper */
+        .scholarship-bg {
+            background: url('publish/background.png') center top / 100% auto no-repeat, linear-gradient(180deg, #90bfd8 7.2%, #e0ebf1 40.9%, #f1eee0 100%);
         }
 
-        .breadcrumb-inner {
-            max-width: 1310px;
-            margin: 0 auto;
-            padding: 0 40px;
+        /* Hero Area */
+        .scholarship-hero {
+            padding: 40px 40px 50px;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 12px;
-        }
-
-        .breadcrumb-home {
-            color: #01B18B;
-            display: flex;
-            align-items: center;
-        }
-
-        .breadcrumb-home:hover {
-            opacity: 0.8;
-        }
-
-        .breadcrumb-divider {
-            color: var(--gray-border);
-            font-size: 14px;
-        }
-
-        .breadcrumb-current {
-            font-size: 14px;
-            color: var(--gray-light);
-        }
-
-        /* Page Header */
-        .page-header {
-            background: var(--white);
-            padding: 20px 40px 40px;
-            text-align: center;
-        }
-
-        .page-header-inner {
-            max-width: 1310px;
-            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
         }
 
         .page-title {
-            font-size: 34px;
+            font-size: 28px;
             font-weight: 700;
-            color: #222222;
-            margin-bottom: 0;
-        }
-
-        .content-section {
-            max-width: 1310px;
-            margin: 0 auto;
-            padding: 40px 40px 100px;
-        }
-
-        /* ========================================
-           Search Section
-           ======================================== */
-        .board-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            color: var(--white);
+            text-align: center;
             margin-bottom: 40px;
         }
 
-        .board-total {
-            font-size: 14px;
-            color: var(--gray);
-        }
-
-        .board-total strong {
-            color: #222222;
-            font-weight: 700;
-        }
-
-        .board-search {
+        /* Search Bar - Pill Style */
+        .search-bar {
+            width: 100%;
+            max-width: 760px;
+            height: 59px;
+            background: var(--white);
+            border-radius: 70px;
             display: flex;
-            gap: 8px;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .board-search select {
-            padding: 10px 16px;
-            padding-right: 36px;
-            border: 1px solid var(--gray-border);
-            border-radius: 8px;
-            font-size: 14px;
-            color: var(--gray-dark);
-            background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center;
+        .search-bar select {
+            padding: 0 17px 0 34px;
+            border: none;
+            font-size: 18px;
+            font-weight: 500;
+            color: #505050;
+            background: transparent;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            outline: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23505050' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0 center;
+            padding-right: 24px;
         }
 
-        .board-search input {
-            padding: 10px 16px;
-            border: 1px solid var(--gray-border);
-            border-radius: 8px;
-            font-size: 14px;
-            width: 200px;
+        .search-bar input {
+            flex: 1;
+            border: none;
+            font-size: 16px;
+            color: var(--gray-dark);
+            outline: none;
+            padding: 0 16px;
+            height: 100%;
         }
 
-        .board-search button {
-            padding: 10px 20px;
-            background: #1F2657;
+        .search-bar button {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 88px;
+            height: 44px;
+            background: #74a6c5;
             color: var(--white);
             border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 500;
+            border-radius: 100px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .search-bar button:hover {
+            background: #6399b8;
+        }
+
+        /* Cards Section */
+        .content-section {
+            padding: 0 40px 50px;
+        }
+
+        .content-inner {
+            max-width: 1180px;
+            margin: 0 auto;
         }
 
         /* ========================================
@@ -363,34 +341,47 @@
            ======================================== */
         .students-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(4, 280px);
+            gap: 20px;
+            justify-content: center;
             margin-bottom: 60px;
         }
 
         .student-card {
-            background: var(--white);
-            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .student-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
         }
 
         .student-photo {
-            width: 100%;
-            height: 280px;
-            background: var(--gray-pale);
+            width: 280px;
+            height: 191px;
+            background: linear-gradient(180deg, #c7d9e7 53.8%, #e2e5e9 100%);
+            border: 1px solid #dae6ed;
+            border-radius: 8px 8px 0 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 18px;
-            color: var(--gray-light);
             overflow: hidden;
+            position: relative;
+        }
+
+        .student-photo-frame {
+            width: 140px;
+            height: 160px;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .student-photo-inner {
+            width: 130px;
+            height: 148px;
+            background: #f6f6f6;
         }
 
         .student-photo img {
@@ -400,105 +391,62 @@
         }
 
         .student-info {
-            padding: 24px;
+            background: var(--white);
+            border-radius: 0 0 8px 8px;
+            padding: 20px;
+        }
+
+        .student-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 13px;
         }
 
         .student-name {
             font-size: 18px;
             font-weight: 700;
-            color: var(--black);
-            margin-bottom: 12px;
+            color: #26475d;
+            letter-spacing: -0.36px;
+        }
+
+        .student-email-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            border: 1px solid #dae6ed;
+            background: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+
+        .student-email-btn:hover {
+            background: var(--bg);
+            border-color: #74a6c5;
+        }
+
+        .student-email-btn svg {
+            width: 16px;
+            height: 16px;
+            color: var(--gray);
+            transition: color 0.2s;
+        }
+
+        .student-email-btn:hover svg {
+            color: #26475d;
         }
 
         .student-details {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .student-detail-item {
-            font-size: 13px;
-            color: var(--gray-dark);
-            line-height: 1.5;
-        }
-
-        .student-email {
-            font-size: 13px;
-            color: var(--primary);
-            word-break: break-all;
-        }
-
-        /* ========================================
-           Pagination
-           ======================================== */
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .pagination-arrow {
-            width: 40px;
-            height: 40px;
-            background: var(--white);
-            border: 1px solid var(--gray-border);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .pagination-arrow:hover {
-            background: #E8F4FD;
-            border-color: #17A6ED;
-        }
-
-        .pagination-arrow.disabled {
-            opacity: 0.3;
-            cursor: not-allowed;
-        }
-
-        .pagination-arrow.disabled:hover {
-            background: var(--white);
-            border-color: var(--gray-border);
-        }
-
-        .pagination-arrow svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--gray-dark);
-        }
-
-        .pagination-number {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             font-size: 15px;
             font-weight: 500;
-            color: var(--gray);
-            background: var(--white);
-            border: 1px solid var(--gray-border);
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s;
+            color: #26475d;
+            line-height: 1.2;
         }
 
-        .pagination-number:hover {
-            background: #E8F4FD;
-            border-color: #17A6ED;
-            color: #17A6ED;
-        }
-
-        .pagination-number.active {
-            background: #17A6ED;
-            border-color: #17A6ED;
-            color: var(--white);
-        }
 
         /* ========================================
            Footer
@@ -586,16 +534,18 @@
             .hamburger { display: flex; }
             .mobile-nav { display: block; }
             .footer-nav { display: none; }
-            .students-grid { grid-template-columns: repeat(2, 1fr); }
-            .search-form { flex-direction: column; }
-            .search-select, .search-input, .search-button { width: 100%; }
+            .students-grid { grid-template-columns: repeat(2, 280px); gap: 16px; }
         }
 
         @media (max-width: 768px) {
-            .page-title { font-size: 28px; }
-            .content-section { padding: 40px 20px; }
-            .search-section { padding: 24px; }
-            .students-grid { grid-template-columns: 1fr; }
+            .page-title { font-size: 24px; }
+            .scholarship-hero { padding: 30px 20px 40px; }
+            .content-section { padding: 0 20px 40px; }
+            .search-bar { height: 50px; }
+            .search-bar select { font-size: 15px; padding-left: 20px; }
+            .search-bar input { font-size: 14px; }
+            .search-bar button { width: 70px; height: 38px; font-size: 15px; }
+            .students-grid { grid-template-columns: 280px; gap: 24px; }
             .footer { padding: 40px 20px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
             .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -673,228 +623,268 @@
     </nav>
 
     <main class="main-content">
-        <div class="breadcrumb">
-            <div class="breadcrumb-inner">
-                <a href="index.html" class="breadcrumb-home">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18">
-                        <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
-                        <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
-                    </svg>
-                </a>
-                <span class="breadcrumb-divider">|</span>
-                <span class="breadcrumb-current">장학생 찾기</span>
-            </div>
-        </div>
-
-        <div class="page-header">
-            <div class="page-header-inner">
-                <h1 class="page-title">장학생 찾기</h1>
+        <div class="scholarship-bg">
+        <div class="scholarship-hero">
+            <h1 class="page-title">장학생 찾기</h1>
+            <div class="search-bar">
+                <select id="searchCategory">
+                    <option value="name">구분</option>
+                    <option value="name">이름</option>
+                    <option value="school">학교</option>
+                    <option value="studentId">학번</option>
+                    <option value="major">학과</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
+                <button type="button">검색</button>
             </div>
         </div>
 
         <div class="content-section">
-            <!-- Search Header -->
-            <div class="board-header">
-                <div class="board-total">총 <strong>24</strong>건</div>
-                <div class="board-search">
-                    <select id="searchCategory">
-                        <option value="name">이름</option>
-                        <option value="school">학교</option>
-                        <option value="studentId">학번</option>
-                        <option value="major">학과</option>
-                    </select>
-                    <input type="text" id="searchInput" placeholder="검색어를 입력하세요">
-                    <button type="button">검색</button>
-                </div>
-            </div>
-
+            <div class="content-inner">
             <!-- Students Grid -->
             <div class="students-grid">
                 <!-- Student Card 1 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 2 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 3 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 4 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 5 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 6 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 7 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 8 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 9 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 10 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 11 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
 
                 <!-- Student Card 12 -->
                 <div class="student-card">
-                    <div class="student-photo">사진</div>
-                    <div class="student-info">
-                        <h3 class="student-name">홍길동</h3>
-                        <div class="student-details">
-                            <div class="student-detail-item">서울대학교</div>
-                            <div class="student-detail-item">생명공학과</div>
-                            <div class="student-detail-item">2015학번</div>
-                            <div class="student-email">email@naver.com</div>
+                    <div class="student-photo">
+                        <div class="student-photo-frame">
+                            <div class="student-photo-inner"></div>
                         </div>
+                    </div>
+                    <div class="student-info">
+                        <div class="student-name-row">
+                            <h3 class="student-name">홍길동</h3>
+                            <a href="mailto:email@naver.com" class="student-email-btn" title="이메일 보내기">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="student-details">연세대학교  경영학과  2016학번</div>
                     </div>
                 </div>
             </div>
-
-            <!-- Pagination -->
-            <div class="pagination">
-                <button class="pagination-arrow disabled">
-                    <svg viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                </button>
-                <button class="pagination-number active">1</button>
-                <button class="pagination-number">2</button>
-                <button class="pagination-number">3</button>
-                <button class="pagination-arrow">
-                    <svg viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                    </svg>
-                </button>
             </div>
+        </div>
         </div>
     </main>
 
@@ -951,14 +941,6 @@
             }
         });
 
-        // Pagination
-        const paginationNumbers = document.querySelectorAll('.pagination-number');
-        paginationNumbers.forEach(btn => {
-            btn.addEventListener('click', function() {
-                paginationNumbers.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
     </script>
 </body>
 </html>

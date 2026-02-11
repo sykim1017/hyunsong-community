@@ -94,8 +94,10 @@
         .board-item:hover { background: #FAFAFA; }
         .board-num { width: 60px; text-align: center; font-size: 14px; color: var(--gray-light); flex-shrink: 0; }
         .board-category { width: 120px; text-align: center; font-size: 14px; color: var(--gray); flex-shrink: 0; }
-        .board-title { flex: 1; font-size: 16px; color: var(--black); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+        .board-title-wrap { flex: 1; display: flex; align-items: center; gap: 6px; }
+        .board-title { font-size: 16px; color: var(--black); font-weight: 500; text-decoration: none; transition: color 0.2s; }
         .board-title:hover { color: #17A6ED; }
+        .board-comment-count { font-size: 13px; color: var(--primary); font-weight: 600; }
         .board-date { width: 100px; text-align: center; font-size: 14px; color: var(--gray-light); flex-shrink: 0; }
         .board-author { width: 100px; text-align: center; font-size: 14px; color: var(--gray); flex-shrink: 0; }
 
@@ -259,70 +261,100 @@
                     <div class="board-item">
                         <div class="board-num">156</div>
                         <div class="board-category">분류 1</div>
-                        <a href="#" class="board-title">장학생 여러분 안녕하세요! 처음 가입했습니다.</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">장학생 여러분 안녕하세요! 처음 가입했습니다.</a>
+                            <span class="board-comment-count">[3]</span>
+                        </div>
                         <div class="board-date">2025.04.15</div>
                         <div class="board-author">홍길동</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">155</div>
                         <div class="board-category">분류 2</div>
-                        <a href="#" class="board-title">2025년 상반기 좌담회 후기 공유합니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">2025년 상반기 좌담회 후기 공유합니다</a>
+                            <span class="board-comment-count">[5]</span>
+                        </div>
                         <div class="board-date">2025.04.14</div>
                         <div class="board-author">김영희</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">154</div>
                         <div class="board-category">분류 3</div>
-                        <a href="#" class="board-title">서울대학교 생명공학과 선배님들 계신가요?</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">서울대학교 생명공학과 선배님들 계신가요?</a>
+                            <span class="board-comment-count">[1]</span>
+                        </div>
                         <div class="board-date">2025.04.13</div>
                         <div class="board-author">이철수</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">153</div>
                         <div class="board-category">분류 4</div>
-                        <a href="#" class="board-title">현송교육문화재단 덕분에 무사히 졸업했습니다. 감사합니다!</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">현송교육문화재단 덕분에 무사히 졸업했습니다. 감사합니다!</a>
+                            <span class="board-comment-count">[7]</span>
+                        </div>
                         <div class="board-date">2025.04.12</div>
                         <div class="board-author">박민수</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">152</div>
                         <div class="board-category">분류 1</div>
-                        <a href="#" class="board-title">취업 준비 중인데 조언 구합니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">취업 준비 중인데 조언 구합니다</a>
+                            <span class="board-comment-count">[2]</span>
+                        </div>
                         <div class="board-date">2025.04.11</div>
                         <div class="board-author">정수진</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">151</div>
                         <div class="board-category">분류 2</div>
-                        <a href="#" class="board-title">대학원 진학 vs 취업 고민 중입니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">대학원 진학 vs 취업 고민 중입니다</a>
+                            <span class="board-comment-count">[4]</span>
+                        </div>
                         <div class="board-date">2025.04.10</div>
                         <div class="board-author">최동욱</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">150</div>
                         <div class="board-category">분류 3</div>
-                        <a href="#" class="board-title">장학생 네트워킹 모임 제안합니다!</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">장학생 네트워킹 모임 제안합니다!</a>
+                            <span class="board-comment-count">[6]</span>
+                        </div>
                         <div class="board-date">2025.04.09</div>
                         <div class="board-author">강민지</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">149</div>
                         <div class="board-category">분류 4</div>
-                        <a href="#" class="board-title">해외 유학 준비 중인 분들 계신가요?</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">해외 유학 준비 중인 분들 계신가요?</a>
+                            <span class="board-comment-count">[2]</span>
+                        </div>
                         <div class="board-date">2025.04.08</div>
                         <div class="board-author">윤서연</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">148</div>
                         <div class="board-category">분류 1</div>
-                        <a href="#" class="board-title">스터디 그룹 모집합니다 (프로그래밍)</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">스터디 그룹 모집합니다 (프로그래밍)</a>
+                            <span class="board-comment-count">[8]</span>
+                        </div>
                         <div class="board-date">2025.04.07</div>
                         <div class="board-author">임재현</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">147</div>
                         <div class="board-category">분류 2</div>
-                        <a href="#" class="board-title">장학생 커뮤니티 활성화를 위한 제안</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">장학생 커뮤니티 활성화를 위한 제안</a>
+                            <span class="board-comment-count">[3]</span>
+                        </div>
                         <div class="board-date">2025.04.06</div>
                         <div class="board-author">송하늘</div>
                     </div>
@@ -359,70 +391,100 @@
                     <div class="board-item">
                         <div class="board-num">89</div>
                         <div class="board-category">생명공학과</div>
-                        <a href="#" class="board-title">생명공학과 장학생 모임 공지</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">생명공학과 장학생 모임 공지</a>
+                            <span class="board-comment-count">[2]</span>
+                        </div>
                         <div class="board-date">2025.04.15</div>
                         <div class="board-author">홍길동</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">88</div>
                         <div class="board-category">컴퓨터공학과</div>
-                        <a href="#" class="board-title">코딩 스터디 모집합니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">코딩 스터디 모집합니다</a>
+                            <span class="board-comment-count">[4]</span>
+                        </div>
                         <div class="board-date">2025.04.14</div>
                         <div class="board-author">김영희</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">87</div>
                         <div class="board-category">경영학과</div>
-                        <a href="#" class="board-title">경영학과 선배님들 질문있어요</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">경영학과 선배님들 질문있어요</a>
+                            <span class="board-comment-count">[1]</span>
+                        </div>
                         <div class="board-date">2025.04.13</div>
                         <div class="board-author">이철수</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">86</div>
                         <div class="board-category">전자공학과</div>
-                        <a href="#" class="board-title">전자공학과 프로젝트 팀원 구합니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">전자공학과 프로젝트 팀원 구합니다</a>
+                            <span class="board-comment-count">[3]</span>
+                        </div>
                         <div class="board-date">2025.04.12</div>
                         <div class="board-author">박민수</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">85</div>
                         <div class="board-category">기계공학과</div>
-                        <a href="#" class="board-title">기계공학과 장학생 친목회</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">기계공학과 장학생 친목회</a>
+                            <span class="board-comment-count">[5]</span>
+                        </div>
                         <div class="board-date">2025.04.11</div>
                         <div class="board-author">정수진</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">84</div>
                         <div class="board-category">화학과</div>
-                        <a href="#" class="board-title">화학과 실험실 추천 부탁드립니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">화학과 실험실 추천 부탁드립니다</a>
+                            <span class="board-comment-count">[2]</span>
+                        </div>
                         <div class="board-date">2025.04.10</div>
                         <div class="board-author">최동욱</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">83</div>
                         <div class="board-category">수학과</div>
-                        <a href="#" class="board-title">수학과 대학원 진학 정보 공유</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">수학과 대학원 진학 정보 공유</a>
+                            <span class="board-comment-count">[6]</span>
+                        </div>
                         <div class="board-date">2025.04.09</div>
                         <div class="board-author">강민지</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">82</div>
                         <div class="board-category">물리학과</div>
-                        <a href="#" class="board-title">물리학과 세미나 안내</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">물리학과 세미나 안내</a>
+                            <span class="board-comment-count">[1]</span>
+                        </div>
                         <div class="board-date">2025.04.08</div>
                         <div class="board-author">윤서연</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">81</div>
                         <div class="board-category">생명공학과</div>
-                        <a href="#" class="board-title">생명공학과 연구실 인턴 후기</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">생명공학과 연구실 인턴 후기</a>
+                            <span class="board-comment-count">[3]</span>
+                        </div>
                         <div class="board-date">2025.04.07</div>
                         <div class="board-author">임재현</div>
                     </div>
                     <div class="board-item">
                         <div class="board-num">80</div>
                         <div class="board-category">건축학과</div>
-                        <a href="#" class="board-title">건축학과 포트폴리오 조언 구합니다</a>
+                        <div class="board-title-wrap">
+                            <a href="board-detail.html" class="board-title">건축학과 포트폴리오 조언 구합니다</a>
+                            <span class="board-comment-count">[4]</span>
+                        </div>
                         <div class="board-date">2025.04.06</div>
                         <div class="board-author">송하늘</div>
                     </div>
