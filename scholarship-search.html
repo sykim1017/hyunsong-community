@@ -243,12 +243,12 @@
 
         /* Background Wrapper */
         .scholarship-bg {
-            background: url('publish/background.png') center top / 100% auto no-repeat, linear-gradient(180deg, #90bfd8 7.2%, #e0ebf1 40.9%, #f1eee0 100%);
+            background: url('publish/background.png') center top / 100% auto no-repeat, #ffffff;
         }
 
         /* Hero Area */
         .scholarship-hero {
-            padding: 40px 40px 50px;
+            padding: 270px 40px 50px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -257,11 +257,13 @@
         }
 
         .page-title {
-            font-size: 34px;
+            font-size: 36px;
             font-weight: 700;
-            color: var(--white);
+            color: #56819b;
             text-align: center;
             margin-bottom: 40px;
+            letter-spacing: -0.72px;
+            line-height: 1.6;
         }
 
         /* Search Bar - Pill Style */
@@ -271,6 +273,7 @@
             height: 59px;
             background: var(--white);
             border-radius: 70px;
+            border: 1px solid #d8d8d8;
             display: flex;
             align-items: center;
             position: relative;
@@ -312,7 +315,7 @@
             transform: translateY(-50%);
             width: 88px;
             height: 44px;
-            background: #74a6c5;
+            background: #56819b;
             color: var(--white);
             border: none;
             border-radius: 100px;
@@ -323,7 +326,7 @@
         }
 
         .search-bar button:hover {
-            background: #6399b8;
+            background: #4a7189;
         }
 
         /* Cards Section */
@@ -342,7 +345,8 @@
         .students-grid {
             display: grid;
             grid-template-columns: repeat(4, 280px);
-            gap: 20px;
+            column-gap: 25px;
+            row-gap: 30px;
             justify-content: center;
             margin-bottom: 60px;
         }
@@ -350,6 +354,7 @@
         .student-card {
             overflow: hidden;
             transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 0 15px rgba(0,0,0,0.12);
         }
 
         .student-card:hover {
@@ -359,14 +364,17 @@
         .student-photo {
             width: 280px;
             height: 191px;
-            background: linear-gradient(180deg, #c7d9e7 53.8%, #e2e5e9 100%);
-            border: 1px solid #dae6ed;
+            background: linear-gradient(180deg, #edf7ff 0%, #f3f5f8 100%);
             border-radius: 8px 8px 0 0;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
             position: relative;
+        }
+
+        .student-card:nth-child(even) .student-photo {
+            background: linear-gradient(180deg, #eef5f1 0%, #f6f6f6 100%);
         }
 
         .student-photo-frame {
@@ -382,6 +390,15 @@
             width: 130px;
             height: 148px;
             background: #f6f6f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .student-photo-inner .default-icon {
+            width: 36px;
+            height: 36px;
+            color: #a0aab4;
         }
 
         .student-photo img {
@@ -392,6 +409,7 @@
 
         .student-info {
             background: var(--white);
+            border-top: 1px solid #f6f6f6;
             border-radius: 0 0 8px 8px;
             padding: 20px;
         }
@@ -540,18 +558,18 @@
             .hamburger { display: flex; }
             .mobile-nav { display: block; }
             .footer-nav { display: none; }
-            .students-grid { grid-template-columns: repeat(2, 280px); gap: 16px; }
+            .students-grid { grid-template-columns: repeat(2, 280px); column-gap: 16px; row-gap: 24px; }
         }
 
         @media (max-width: 768px) {
             .page-title { font-size: 28px; }
-            .scholarship-hero { padding: 30px 20px 40px; }
+            .scholarship-hero { padding: 180px 20px 40px; }
             .content-section { padding: 0 20px 40px; }
             .search-bar { height: 50px; }
             .search-bar select { font-size: 15px; padding-left: 20px; }
             .search-bar input { font-size: 14px; }
             .search-bar button { width: 70px; height: 38px; font-size: 15px; }
-            .students-grid { grid-template-columns: 280px; gap: 24px; }
+            .students-grid { grid-template-columns: 280px; column-gap: 0; row-gap: 24px; }
             .footer { padding: 40px 20px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
             .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -653,7 +671,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <img src="publish/sample-photo1.png" alt="프로필 사진" style="width:100%;height:100%;object-fit:cover;">
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -673,7 +693,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -693,7 +715,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <img src="publish/sample-photo2.png" alt="프로필 사진" style="width:100%;height:100%;object-fit:cover;">
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -713,7 +737,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -733,7 +759,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -753,7 +781,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -773,7 +803,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -793,7 +825,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -813,7 +847,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -833,7 +869,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -853,7 +891,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
@@ -873,7 +913,9 @@
                 <div class="student-card">
                     <div class="student-photo">
                         <div class="student-photo-frame">
-                            <div class="student-photo-inner"></div>
+                            <div class="student-photo-inner">
+                                <svg class="default-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/></svg>
+                            </div>
                         </div>
                     </div>
                     <div class="student-info">
