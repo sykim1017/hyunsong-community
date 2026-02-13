@@ -74,7 +74,10 @@
         .tab-item:hover { color: #17A6ED; }
         .tab-item.active { color: var(--white); background: #1F2657; }
 
-        .content-section { max-width: 1310px; margin: 0 auto; padding: 40px 40px 100px; }
+        .content-section { max-width: 1310px; margin: 0 auto; padding: 40px 40px 100px; background: var(--bg); }
+
+        /* White Box Wrapper */
+        .content-white-box { background: var(--white); border-radius: 16px; box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08); padding: 50px 60px; max-width: 1060px; margin: 0 auto; }
 
         /* Application Form */
         .form-container { max-width: 920px; margin: 0 auto; }
@@ -133,6 +136,7 @@
             .breadcrumb-inner { padding: 0 20px; }
             .page-header { padding: 20px 20px; }
             .content-section { padding: 30px 20px 80px; }
+            .content-white-box { padding: 30px 20px; }
             .footer-top, .footer-bottom, .footer-copyright { flex-direction: column; gap: 20px; align-items: flex-start; }
             .footer-nav { flex-direction: column; gap: 12px; }
         }
@@ -227,14 +231,11 @@
         <div class="page-header">
             <div class="page-header-inner">
                 <h1 class="page-title">신청하기</h1>
-                <div class="sub-nav-tabs">
-                    <a href="community.html" class="tab-item">공지사항</a>
-                    <a href="community.html" class="tab-item active">재단 소식</a>
-                </div>
             </div>
         </div>
 
         <div class="content-section">
+            <div class="content-white-box">
             <form class="form-container">
                 <div class="form-section">
                     <div class="form-section-header">
@@ -322,6 +323,7 @@
 
                 <button type="submit" class="form-submit">신청하기</button>
             </form>
+            </div>
         </div>
     </main>
 
