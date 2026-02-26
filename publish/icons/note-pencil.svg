@@ -1,0 +1,10 @@
+<svg preserveAspectRatio="none" width="100%" height="100%" overflow="visible" style="display: block;" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="NotePencil">
+<g id="Vector">
+</g>
+<path id="Vector_2" opacity="0.2" d="M27.5 34.375H20.625V27.5L36.0938 12.0312L42.9688 18.9062L27.5 34.375Z" fill="#00A355"/>
+<path id="Vector_3" d="M27.5 34.375H20.625V27.5L41.25 6.875L48.125 13.75L27.5 34.375Z" stroke="#00A355" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_4" d="M36.0938 12.0312L42.9688 18.9062" stroke="#00A355" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Vector_5" d="M46.4062 25.7812V44.6875C46.4062 45.1433 46.2252 45.5805 45.9028 45.9028C45.5805 46.2252 45.1433 46.4062 44.6875 46.4062H10.3125C9.85666 46.4062 9.41949 46.2252 9.09716 45.9028C8.77483 45.5805 8.59375 45.1433 8.59375 44.6875V10.3125C8.59375 9.85666 8.77483 9.41949 9.09716 9.09716C9.41949 8.77483 9.85666 8.59375 10.3125 8.59375H29.2188" stroke="#00A355" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</svg>
