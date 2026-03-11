@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 - 현송교육문화재단 장학생 커뮤니티</title>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #01B18B;
+            --lime: rgba(228, 254, 243, 0.8);
+            --green-light: #EDF6E8;
+            --black: #222222;
+            --gray-dark: #333333;
+            --gray: #666666;
+            --gray-light: #999999;
+            --gray-pale: #CCCCCC;
+            --gray-border: #E5E5E5;
+            --bg: #F5F5F5;
+            --white: #FFFFFF;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; color: var(--black); line-height: 1.6; background: var(--bg); min-height: 100vh; display: flex; flex-direction: column; }
+
+        /* Header */
+        .header { position: fixed; top: 0; left: 0; right: 0; background: var(--white); z-index: 1000; box-shadow: 0 2px 2px rgba(0, 0, 0, 0.03); }
+        .header-inner { max-width: 1310px; margin: 0 auto; padding: 0 40px; height: 70px; display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; text-decoration: none; gap: 8px; }
+        .logo-img { height: 40px; width: auto; }
+        .logo-text { font-size: 14px; font-weight: 600; color: var(--primary); }
+        .main-nav { display: flex; gap: 50px; }
+        .main-nav > .nav-item { position: relative; }
+        .main-nav > .nav-item > a { text-decoration: none; color: var(--black); font-size: 16px; font-weight: 500; position: relative; transition: color 0.2s; display: block; padding: 10px 0; }
+        .main-nav > .nav-item > a:hover, .main-nav > .nav-item > a.active { color: #01B18B; }
+        .sub-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: var(--white); min-width: 180px; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border-radius: 12px; padding: 12px 0; opacity: 0; visibility: hidden; transition: all 0.2s ease; z-index: 100; }
+        .nav-item:hover .sub-menu { opacity: 1; visibility: visible; }
+        .sub-menu a { display: block; padding: 10px 20px; font-size: 14px; color: var(--gray-dark); text-decoration: none; transition: all 0.2s; }
+        .sub-menu a:hover { background: var(--green-light); color: #01B18B; }
+        .header-utils { display: flex; align-items: center; gap: 12px; }
+        .header-utils a { color: var(--black); display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; }
+        .header-utils svg { width: 22px; height: 22px; }
+        .hamburger { display: none; flex-direction: column; justify-content: center; align-items: center; width: 36px; height: 36px; cursor: pointer; background: none; border: none; padding: 0; z-index: 1001; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s ease; }
+        .hamburger span:nth-child(1) { margin-bottom: 6px; }
+        .hamburger span:nth-child(3) { margin-top: 6px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -6px); }
+        .mobile-nav { display: none; position: fixed; top: 70px; left: 0; right: 0; bottom: 0; background: var(--white); z-index: 999; padding: 40px 20px; overflow-y: auto; transform: translateX(100%); transition: transform 0.3s ease; }
+        .mobile-nav.active { transform: translateX(0); }
+        .mobile-nav a { display: block; padding: 14px 0; font-size: 15px; font-weight: 500; color: var(--black); text-decoration: none; border-bottom: 1px solid var(--gray-border); transition: color 0.2s; }
+        .mobile-nav a:hover { color: #01B18B; }
+        .mobile-nav-utils { display: flex; gap: 16px; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--gray-border); }
+        .mobile-nav-utils a { display: flex; align-items: center; gap: 8px; padding: 12px 0; font-size: 15px; color: var(--gray); border-bottom: none; }
+        .mobile-nav-utils svg { width: 20px; height: 20px; }
+        body.menu-open { overflow: hidden; }
+        .main-content { flex: 1; padding-top: 70px; display: flex; align-items: flex-start; justify-content: center; }
+
+        /* Signup Form */
+        .signup-container { max-width: 640px; width: 100%; padding: 50px 40px; background: var(--white); border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); margin: 40px 20px; }
+        .signup-title { font-size: 28px; font-weight: 700; color: #222222; text-align: center; margin-bottom: 40px; }
+
+        /* Section */
+        .form-section { margin-bottom: 36px; }
+        .section-title { font-size: 17px; font-weight: 700; color: var(--primary); padding-bottom: 12px; border-bottom: 2px solid var(--primary); margin-bottom: 24px; }
+
+        /* Form Elements */
+        .form-group { margin-bottom: 20px; }
+        .form-label { display: block; font-size: 14px; font-weight: 500; color: var(--gray-dark); margin-bottom: 8px; }
+        .form-label .required { color: #E53E3E; margin-left: 2px; }
+        .form-input { width: 100%; padding: 14px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 15px; font-family: 'Pretendard', sans-serif; transition: border-color 0.2s; background: var(--white); }
+        .form-input:focus { outline: none; border-color: var(--primary); }
+        .form-input::placeholder { color: var(--gray-light); }
+        .form-select { width: 100%; padding: 14px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 15px; font-family: 'Pretendard', sans-serif; transition: border-color 0.2s; background: var(--white); appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23999' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 16px center; cursor: pointer; }
+        .form-select:focus { outline: none; border-color: var(--primary); }
+
+        /* Two-column layout */
+        .form-row { display: flex; gap: 20px; }
+        .form-row .form-group { flex: 1; }
+
+        /* School row: text + select */
+        .school-row { display: flex; gap: 12px; }
+        .school-row .form-input { flex: 1; }
+        .school-row .form-select { width: 140px; flex-shrink: 0; }
+
+        /* File input */
+        .file-input-wrapper { position: relative; }
+        .file-input-wrapper input[type="file"] { position: absolute; left: 0; top: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 1; }
+        .file-input-display { width: 100%; padding: 14px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 15px; color: var(--gray-light); background: var(--white); display: flex; align-items: center; justify-content: space-between; }
+        .file-input-display svg { width: 18px; height: 18px; color: var(--gray-light); }
+
+        /* Radio buttons */
+        .radio-group { display: flex; gap: 24px; padding-top: 6px; }
+        .radio-label { display: flex; align-items: center; gap: 8px; font-size: 15px; color: var(--gray-dark); cursor: pointer; }
+        .radio-label input[type="radio"] { width: 18px; height: 18px; accent-color: var(--primary); cursor: pointer; }
+
+        /* Terms box */
+        .terms-box { background: #F7F7F7; border: 1px solid var(--gray-border); border-radius: 8px; padding: 20px; margin-bottom: 16px; max-height: 200px; overflow-y: auto; font-size: 13px; line-height: 1.8; color: var(--gray); }
+        .terms-box p { margin-bottom: 12px; }
+        .terms-box p:last-child { margin-bottom: 0; }
+        .terms-box table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+        .terms-box table th, .terms-box table td { border: 1px solid var(--gray-border); padding: 10px 12px; text-align: left; }
+        .terms-box table th { background: #EEEEEE; font-weight: 600; color: var(--gray-dark); }
+        .terms-group { margin-bottom: 28px; }
+        .terms-group:last-child { margin-bottom: 0; }
+        .terms-label { font-size: 15px; font-weight: 600; color: var(--gray-dark); margin-bottom: 12px; }
+
+        /* Notice box */
+        .notice-box { display: flex; align-items: flex-start; gap: 10px; background: rgba(1, 177, 139, 0.08); border-radius: 8px; padding: 16px 20px; margin-bottom: 24px; }
+        .notice-box svg { width: 20px; height: 20px; color: var(--primary); flex-shrink: 0; margin-top: 1px; }
+        .notice-box p { font-size: 14px; color: var(--gray); line-height: 1.5; }
+
+        /* Submit button */
+        .signup-button { width: 100%; padding: 16px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; font-family: 'Pretendard', sans-serif; }
+        .signup-button:hover { opacity: 0.9; }
+
+        /* Login link */
+        .login-link { text-align: center; margin-top: 24px; font-size: 14px; color: var(--gray); }
+        .login-link a { color: var(--primary); text-decoration: none; font-weight: 600; }
+        .login-link a:hover { text-decoration: underline; }
+
+        /* Password hint */
+        .form-hint { font-size: 12px; color: var(--gray-light); margin-top: 6px; }
+
+        /* Footer */
+        .footer { background: var(--gray-dark); padding: 50px 40px; margin-top: auto; }
+        .footer-inner { max-width: 1310px; margin: 0 auto; }
+        .footer-top { display: flex; justify-content: space-between; padding-bottom: 30px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 30px; }
+        .footer-logo { font-size: 16px; font-weight: 700; color: var(--white); }
+        .footer-nav { display: flex; gap: 60px; }
+        .footer-nav-group a { display: block; font-size: 13px; font-weight: 500; color: rgba(255,255,255,0.7); text-decoration: none; }
+        .footer-nav-group a:hover { color: var(--white); }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: flex-end; }
+        .footer-info { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.8; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { font-size: 12px; color: rgba(255,255,255,0.5); text-decoration: none; }
+        .footer-links a:hover { color: var(--white); }
+        .footer-copyright { margin-top: 20px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); display: flex; justify-content: space-between; align-items: center; }
+        .footer-copyright p { font-size: 11px; color: rgba(255,255,255,0.3); }
+        .family-site { background: transparent; border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.5); padding: 10px 16px; font-size: 12px; border-radius: 4px; cursor: pointer; }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .header-inner { padding: 0 20px; }
+            .main-nav { display: none; }
+            .header-utils { display: none; }
+            .hamburger { display: flex; }
+            .mobile-nav { display: block; }
+            .footer-nav { display: none; }
+        }
+        @media (max-width: 768px) {
+            .signup-container { padding: 36px 20px; margin: 20px 12px; }
+            .signup-title { font-size: 24px; margin-bottom: 30px; }
+            .form-row { flex-direction: column; gap: 0; }
+            .school-row { flex-direction: column; gap: 0; }
+            .school-row .form-select { width: 100%; margin-top: 0; }
+            .school-row .form-input { margin-bottom: 12px; }
+            .section-title { font-size: 16px; }
+            .footer { padding: 40px 20px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-inner">
+            <a href="index.html" class="logo">
+                <img src="https://github.com/sykim1017/hyunsong/blob/main/logo_%E1%84%92%E1%85%A7%E1%86%AB%E1%84%89%E1%85%A9%E1%86%BC%E1%84%80%E1%85%AD%E1%84%8B%E1%85%B2%E1%86%A8%E1%84%86%E1%85%AE%E1%86%AB%E1%84%92%E1%85%AA%E1%84%8C%E1%85%A2%E1%84%83%E1%85%A1%E1%86%AB.png?raw=true" alt="현송교육문화재단" class="logo-img">
+                <span class="logo-text">커뮤니티</span>
+            </a>
+            <nav class="main-nav">
+                <div class="nav-item">
+                    <a href="scholarship-search.html">장학생 찾기</a>
+                </div>
+                <div class="nav-item">
+                    <a href="hero.html">현송 영웅</a>
+                </div>
+                <div class="nav-item">
+                    <a href="board.html">자유게시판</a>
+                </div>
+                <div class="nav-item">
+                    <a href="gallery.html">장학 갤러리</a>
+                </div>
+                <div class="nav-item">
+                    <a href="community.html">커뮤니티</a>
+                    <div class="sub-menu">
+                        <a href="community.html#notice">공지사항</a>
+                        <a href="community.html#news">재단소식</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="header-utils">
+                <a href="mypage.html" style="width:auto;font-size:14px;font-weight:500;color:var(--black);text-decoration:none;">마이페이지</a>
+                <a href="login.html">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                    </svg>
+                </a>
+                <a href="#">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                    </svg>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="메뉴 열기">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="scholarship-search.html">장학생 찾기</a>
+        <a href="hero.html">현송 영웅</a>
+        <a href="board.html">자유게시판</a>
+        <a href="gallery.html">장학 갤러리</a>
+        <a href="community.html">커뮤니티</a>
+        <div class="mobile-nav-utils">
+            <a href="login.html">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                </svg>
+                로그인
+            </a>
+            <a href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418" />
+                </svg>
+                ENG
+            </a>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <div class="signup-container">
+            <h1 class="signup-title">회원가입</h1>
+            <form id="signupForm">
+                <!-- 섹션 1: 장학생 인적사항 -->
+                <div class="form-section">
+                    <h2 class="section-title">장학생 인적사항</h2>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nameKo" class="form-label">성명(한)<span class="required">*</span></label>
+                            <input type="text" id="nameKo" class="form-input" placeholder="홍길동" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nameEn" class="form-label">성명(영문)<span class="required">*</span></label>
+                            <input type="text" id="nameEn" class="form-input" placeholder="Hong Gildong" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email" class="form-label">이메일<span class="required">*</span></label>
+                            <input type="email" id="email" class="form-input" placeholder="example@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">연락처<span class="required">*</span></label>
+                            <input type="tel" id="phone" class="form-input" placeholder="010-0000-0000" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birth" class="form-label">생년월일<span class="required">*</span></label>
+                            <input type="text" id="birth" class="form-input" placeholder="YYMMDD" maxlength="6" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile" class="form-label">프로필 등록</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="profile" accept="image/*">
+                                <div class="file-input-display" id="fileDisplay">
+                                    <span>첨부파일</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="school" class="form-label">소속학교<span class="required">*</span></label>
+                        <div class="school-row">
+                            <input type="text" id="school" class="form-input" placeholder="학교명을 입력하세요" required>
+                            <select id="schoolType" class="form-select" required>
+                                <option value="" disabled selected>학교 구분</option>
+                                <option value="university">대학교</option>
+                                <option value="highschool">고등학교</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department" class="form-label">학과<span class="required">*</span></label>
+                            <input type="text" id="department" class="form-input" placeholder="학과를 입력하세요" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentId" class="form-label">학번<span class="required">*</span></label>
+                            <input type="text" id="studentId" class="form-input" placeholder="학번을 입력하세요" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">성별<span class="required">*</span></label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="male" required>
+                                <span>남성</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="gender" value="female">
+                                <span>여성</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 섹션 2: 계정 정보 -->
+                <div class="form-section">
+                    <h2 class="section-title">계정 정보</h2>
+                    <div class="form-group">
+                        <label for="userId" class="form-label">아이디<span class="required">*</span></label>
+                        <input type="text" id="userId" class="form-input" placeholder="아이디를 입력하세요" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="pw" class="form-label">비밀번호<span class="required">*</span></label>
+                        <input type="password" id="pw" class="form-input" placeholder="비밀번호를 입력하세요" required minlength="6">
+                        <p class="form-hint">6자 이상 영문+숫자 조합으로 입력해주세요.</p>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwConfirm" class="form-label">비밀번호 확인<span class="required">*</span></label>
+                        <input type="password" id="pwConfirm" class="form-input" placeholder="비밀번호를 다시 입력하세요" required>
+                    </div>
+                </div>
+
+                <!-- 섹션 3: 약관 동의 -->
+                <div class="form-section">
+                    <h2 class="section-title">약관 동의</h2>
+
+                    <!-- 이용약관 -->
+                    <div class="terms-group">
+                        <p class="terms-label">이용약관 동의<span class="required">*</span></p>
+                        <div class="terms-box">
+                            <p>이용약관 내용은 파일로 따로 추후 드리겠습니다.</p>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="termsAgree" value="agree" required>
+                                <span>동의</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="termsAgree" value="disagree">
+                                <span>미동의</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 개인정보 수집·이용 동의 -->
+                    <div class="terms-group">
+                        <p class="terms-label">개인정보 제공 및 수집·이용 동의서<span class="required">*</span></p>
+                        <div class="terms-box">
+                            <p>현송교육문화재단에서는 장학생 커뮤니티를 위하여 아래와 같이 개인정보를 수집·이용하고자 합니다. 아래 사항에 대해 충분히 읽어 보신 후, 동의 및 서명해 주시길 바랍니다.</p>
+                            <p><strong>■ 개인정보 수집 · 이용 내역(필수사항)</strong></p>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>항목</th>
+                                        <th>수집·이용 목적</th>
+                                        <th>보유기간</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>성명, 생년월일, 연락처, 이메일 등 회원가입에 기입한 정보 및 사용자가 제공한 정보</td>
+                                        <td>홈페이지 가입, 재단 행사 참여 등 진행 관리</td>
+                                        <td>개인정보 제공·활용 동의서가 작성된 때부터 수집·이용 목적 달성 시까지</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <p>※ 위의 개인정보 수집·이용에 대한 동의를 거부할 권리가 있으며, 동의 거부 시 회원가입이 제한됩니다.</p>
+                            <p>※ 수집된 개인정보는 목적 외의 용도로는 이용되지 않습니다.</p>
+                            <p>「개인정보보호법」 등 관련 법규에 의거하여 상기 본인은 위와 같이 개인정보 수집 및 활용에 동의합니다.</p>
+                        </div>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="privacyAgree" value="agree" required>
+                                <span>동의</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="privacyAgree" value="disagree">
+                                <span>미동의</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- 만 14세 이상 동의 -->
+                    <div class="terms-group">
+                        <p class="terms-label">만 14세 이상 동의<span class="required">*</span></p>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="ageAgree" value="agree" required>
+                                <span>동의 (만 14세 이상입니다)</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="ageAgree" value="disagree">
+                                <span>미동의</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 안내 문구 -->
+                <div class="notice-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z" />
+                    </svg>
+                    <p>회원가입은 관리자 승인이 필요하며, 최대 7일까지 소요됩니다.</p>
+                </div>
+
+                <!-- 제출 버튼 -->
+                <button type="submit" class="signup-button">회원가입</button>
+            </form>
+            <p class="login-link">이미 계정이 있으신가요? <a href="login.html">로그인</a></p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-inner">
+            <div class="footer-top">
+                <div class="footer-logo">현송교육문화재단</div>
+                <div class="footer-nav">
+                    <div class="footer-nav-group"><a href="scholarship-search.html">장학생 찾기</a></div>
+                    <div class="footer-nav-group"><a href="hero.html">현송 영웅</a></div>
+                    <div class="footer-nav-group"><a href="board.html">자유게시판</a></div>
+                    <div class="footer-nav-group"><a href="gallery.html">장학 갤러리</a></div>
+                    <div class="footer-nav-group"><a href="community.html">커뮤니티</a></div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-info">서울 구로구 경인로 661, 101동 1201~1203호 (우)08208|TEL : 02-2612-7150, 7140</div>
+                <div class="footer-links">
+                    <a href="#">이용약관</a>
+                    <a href="#">개인정보처리방침</a>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 HYUNSONG EDUCATIONAL & CULTURAL FOUNDATION. ALL RIGHTS RESERVED.</p>
+                <button class="family-site">패밀리사이트 &rarr;</button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile navigation
+        const hamburger = document.getElementById('hamburger');
+        const mobileNav = document.getElementById('mobileNav');
+
+        hamburger.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+            document.body.classList.toggle('menu-open');
+        });
+
+        mobileNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 1024) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                document.body.classList.remove('menu-open');
+            }
+        });
+
+        // File input display
+        document.getElementById('profile').addEventListener('change', function() {
+            const display = document.getElementById('fileDisplay');
+            const span = display.querySelector('span');
+            if (this.files.length > 0) {
+                span.textContent = this.files[0].name;
+                span.style.color = 'var(--black)';
+            } else {
+                span.textContent = '첨부파일';
+                span.style.color = 'var(--gray-light)';
+            }
+        });
+
+        // Form submit
+        document.getElementById('signupForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

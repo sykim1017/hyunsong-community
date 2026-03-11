@@ -77,27 +77,64 @@
         .content-section { max-width: 1310px; margin: 0 auto; padding: 20px 40px 100px; }
         .section-hidden { display: none; }
 
-        /* 신청 내역 - 카드 스타일 */
-        .card-list { display: flex; flex-direction: column; gap: 16px; }
-        .card-item { background: var(--white); border: 1px solid var(--gray-border); border-radius: 12px; padding: 24px 28px; transition: all 0.2s; }
-        .card-item:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); border-color: #d0d0d0; }
-        .card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
-        .card-category { padding: 4px 14px; font-size: 12px; font-weight: 600; border-radius: 20px; }
-        .card-category.scholarship { background: #E8F5E9; color: #2E7D32; }
-        .card-category.youth { background: #E8F4FD; color: #4A7C9B; }
-        .card-applicant { font-size: 13px; color: var(--gray); }
-        .card-date { font-size: 13px; color: var(--gray-light); margin-left: auto; }
-        .card-title { font-size: 17px; font-weight: 600; color: var(--black); margin-bottom: 10px; text-decoration: none; display: block; transition: color 0.2s; }
-        .card-title:hover { color: #17A6ED; }
-        .card-bottom { display: flex; align-items: center; justify-content: space-between; }
-        .card-schedule { font-size: 13px; color: var(--gray); }
-        .card-schedule strong { color: var(--gray-dark); font-weight: 500; }
-        .card-actions { display: flex; gap: 8px; }
-        .btn-action { display: inline-block; padding: 8px 18px; border-radius: 20px; font-size: 13px; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.2s; }
-        .btn-action.view { background: #1F2657; color: var(--white); border: 1px solid #1F2657; }
-        .btn-action.view:hover { opacity: 0.85; }
-        .btn-action.edit { background: var(--white); color: #1F2657; border: 1px solid #1F2657; }
-        .btn-action.edit:hover { background: #1F2657; color: var(--white); }
+        /* 게시판 스타일 */
+        .board-section { padding: 20px 0; }
+        .board-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .board-total { font-size: 14px; color: var(--gray); }
+        .board-total strong { color: #222222; font-weight: 700; }
+        .board-search { display: flex; gap: 8px; }
+        .board-search select { padding: 10px 16px; padding-right: 36px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; color: var(--gray-dark); background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
+        .board-search input { padding: 10px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; width: 200px; }
+        .board-search button { padding: 10px 20px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+        .board-list { border-top: 2px solid #1F2657; }
+        .board-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--gray-border); gap: 20px; }
+        .board-item:hover { background: #FAFAFA; }
+        .board-num { width: 60px; text-align: center; font-size: 14px; color: var(--gray-light); flex-shrink: 0; }
+        .board-category { width: 100px; padding: 4px 12px; font-size: 12px; font-weight: 600; border-radius: 20px; flex-shrink: 0; text-align: center; }
+        .board-category.seminar { background: #E8F4FD; color: #4A7C9B; }
+        .board-category.ceremony { background: #FFF3E0; color: #EF6C00; }
+        .board-title { flex: 1; font-size: 16px; color: var(--black); font-weight: 500; text-decoration: none; transition: color 0.2s; }
+        .board-title:hover { color: #17A6ED; }
+        .board-schedule { width: 180px; text-align: center; font-size: 13px; color: var(--gray); flex-shrink: 0; }
+        .board-apply { width: 100px; text-align: center; flex-shrink: 0; }
+        .btn-apply { display: inline-block; padding: 8px 16px; background: transparent; color: #1F2657; border: 1px solid #1F2657; border-radius: 20px; font-size: 13px; font-weight: 500; text-decoration: none; cursor: pointer; transition: all 0.2s; }
+        .btn-apply:hover { background: #1F2657; color: var(--white); }
+        .btn-apply.closed { background: transparent; border-color: var(--gray-light); color: var(--gray-light); cursor: default; }
+        .btn-apply.closed:hover { background: transparent; color: var(--gray-light); }
+        .board-pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 40px; }
+        .board-pagination a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; color: var(--gray); text-decoration: none; transition: all 0.2s; }
+        .board-pagination a:hover { border-color: #17A6ED; color: #17A6ED; }
+        .board-pagination a.active { background: #17A6ED; border-color: #17A6ED; color: var(--white); }
+        .board-pagination a.arrow { font-size: 12px; }
+
+        /* 신청자 리스트 */
+        .applicant-view { display: none; }
+        .applicant-view.active { display: block; }
+        .applicant-back { display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: var(--gray); text-decoration: none; margin-bottom: 20px; cursor: pointer; background: none; border: none; font-family: 'Pretendard', sans-serif; transition: color 0.2s; }
+        .applicant-back:hover { color: var(--black); }
+        .applicant-back svg { width: 16px; height: 16px; }
+        .applicant-event-title { font-size: 18px; font-weight: 700; color: var(--black); margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid #1F2657; }
+        .applicant-list { border-top: none; }
+        .applicant-item { display: flex; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--gray-border); gap: 20px; }
+        .applicant-item:hover { background: #FAFAFA; }
+        .applicant-num { width: 50px; text-align: center; font-size: 14px; color: var(--gray-light); flex-shrink: 0; }
+        .applicant-name { flex: 1; font-size: 15px; font-weight: 500; color: #1F2657; text-decoration: none; transition: color 0.2s; cursor: pointer; }
+        .applicant-name:hover { color: #17A6ED; text-decoration: underline; }
+        .applicant-date { width: 160px; text-align: center; font-size: 14px; color: var(--gray); flex-shrink: 0; }
+
+        /* 본인 확인 */
+        .verify-section { display: flex; justify-content: center; padding: 40px 0; }
+        .verify-card { max-width: 460px; width: 100%; background: var(--white); border: 1px solid var(--gray-border); border-radius: 16px; padding: 50px 40px; text-align: center; }
+        .verify-icon { margin-bottom: 20px; }
+        .verify-icon svg { width: 48px; height: 48px; color: #1F2657; }
+        .verify-title { font-size: 22px; font-weight: 700; color: var(--black); margin-bottom: 8px; }
+        .verify-desc { font-size: 14px; color: var(--gray); margin-bottom: 32px; }
+        .verify-form { text-align: left; }
+        .verify-form .form-input { width: 100%; flex: none; }
+        .verify-group { margin-bottom: 18px; }
+        .verify-label { display: block; font-size: 14px; font-weight: 500; color: var(--gray-dark); margin-bottom: 8px; }
+        .verify-button { width: 100%; padding: 16px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; font-family: 'Pretendard', sans-serif; margin-top: 8px; }
+        .verify-button:hover { opacity: 0.9; }
 
         /* 개인정보관리 */
         .profile-section { max-width: 920px; margin: 0 auto; padding: 30px 0; }
@@ -113,6 +150,28 @@
         .password-hint { font-size: 13px; color: var(--primary); margin-top: -10px; margin-bottom: 10px; padding-left: 140px; }
         .form-submit { display: block; width: 200px; margin: 40px auto 0; padding: 14px 40px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
         .form-submit:hover { opacity: 0.9; }
+
+        /* Certificate */
+        .cert-board-header-row { display: flex; align-items: center; padding: 14px 0; background: transparent; border-bottom: 2px solid #1F2657; gap: 20px; }
+        .cert-board-header-row span { font-size: 14px; font-weight: 600; color: var(--gray-dark); text-align: center; }
+        .cert-col-check { width: 50px; flex-shrink: 0; text-align: center; }
+        .cert-col-check input[type="checkbox"] { width: 18px; height: 18px; cursor: pointer; accent-color: #1F2657; }
+        .cert-col-num { width: 60px; flex-shrink: 0; }
+        .cert-col-category { width: 120px; flex-shrink: 0; }
+        .cert-col-title { flex: 1; }
+        .cert-col-date { width: 140px; flex-shrink: 0; }
+        .cert-board-item { display: flex; align-items: center; padding: 20px 0; border-bottom: 1px solid var(--gray-border); gap: 20px; }
+        .cert-board-item:hover { background: #FAFAFA; }
+        .cert-board-item .cert-col-num { font-size: 14px; color: var(--gray-light); text-align: center; }
+        .cert-board-item .cert-col-category span { display: inline-block; padding: 4px 12px; font-size: 12px; font-weight: 600; border-radius: 20px; text-align: center; }
+        .cert-cat-scholarship { background: #E8F5E9; color: #2E7D32; }
+        .cert-cat-seminar { background: #E8F4FD; color: #4A7C9B; }
+        .cert-cat-ceremony { background: #FFF3E0; color: #EF6C00; }
+        .cert-board-item .cert-col-title { font-size: 15px; color: var(--black); font-weight: 500; text-align: center; }
+        .cert-board-item .cert-col-date { font-size: 14px; color: var(--gray); text-align: center; }
+        .cert-action { display: flex; justify-content: center; margin-top: 32px; }
+        .btn-download { padding: 14px 40px; background: #1F2657; color: var(--white); border: none; border-radius: 30px; font-size: 15px; font-weight: 600; cursor: pointer; font-family: 'Pretendard', sans-serif; transition: opacity 0.2s; }
+        .btn-download:hover { opacity: 0.85; }
 
         /* Footer */
         .footer { background: var(--gray-dark); padding: 50px 40px; }
@@ -138,6 +197,8 @@
             .hamburger { display: flex; }
             .mobile-nav { display: block; }
             .footer-nav { display: none; }
+            .board-search { flex-wrap: wrap; }
+            .board-search input { width: 100%; }
         }
         @media (max-width: 768px) {
             .breadcrumb { padding: 12px 16px; }
@@ -149,15 +210,29 @@
             .content-section { padding: 20px 20px 60px; }
             .board-item { flex-wrap: wrap; gap: 8px; padding: 14px 0; }
             .board-num { display: none; }
-            .board-header-row { display: none; }
             .board-title { width: 100%; order: 1; font-size: 15px; }
             .board-category { order: 0; font-size: 11px; padding: 3px 10px; }
-            .board-date { width: auto; order: 2; font-size: 12px; }
             .board-schedule { width: auto; order: 2; font-size: 12px; text-align: left; }
-            .board-actions { width: auto; order: 3; }
+            .board-apply { width: auto; order: 3; }
+            .cert-board-header-row { display: none; }
+            .cert-board-item { flex-wrap: wrap; gap: 8px; padding: 14px 0; }
+            .cert-col-num { display: none; }
+            .cert-col-check { width: 30px; }
+            .cert-col-category { width: auto; order: 0; }
+            .cert-col-title { width: 100%; order: 1; text-align: left !important; }
+            .cert-col-date { width: auto; order: 2; font-size: 12px; }
+            .verify-card { padding: 36px 24px; }
+            .verify-title { font-size: 20px; }
+            .applicant-item { gap: 12px; }
+            .applicant-date { width: auto; font-size: 12px; }
+            .applicant-num { width: 30px; }
             .form-row { flex-direction: column; gap: 12px; }
             .form-group { width: 100%; }
             .password-hint { padding-left: 0; }
+            .board-search { flex-wrap: nowrap; gap: 6px; }
+            .board-search select { padding: 8px 10px; font-size: 13px; flex-shrink: 0; }
+            .board-search input { flex: 1; min-width: 0; padding: 8px 10px; font-size: 13px; }
+            .board-search button { padding: 8px 14px; font-size: 13px; flex-shrink: 0; }
             .footer { padding: 40px 20px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
             .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -234,49 +309,142 @@
                 <h1 class="page-title">마이페이지</h1>
                 <div class="sub-nav-tabs">
                     <button class="tab-item active" data-target="applications">신청 내역 관리</button>
+                    <button class="tab-item" data-target="certificate">수여증 발급</button>
                     <button class="tab-item" data-target="profile">개인 정보 관리</button>
                 </div>
             </div>
         </div>
 
         <div class="content-section" id="applications">
-            <div class="card-list">
-                <div class="card-item">
-                    <div class="card-top">
-                        <span class="card-category scholarship">장학사업</span>
-                        <span class="card-applicant">신청인: 홍길동</span>
-                        <span class="card-date">접수일 2025-10-15</span>
-                    </div>
-                    <a href="#" class="card-title">장학사업 좌담회 공지합니다.</a>
-                    <div class="card-bottom">
-                        <span class="card-schedule"><strong>모집 일정</strong> 2025-10-15 ~ 2025-11-16</span>
-                        <div class="card-actions">
-                            <a href="#" class="btn-action view">상세보기</a>
-                            <a href="apply.html" class="btn-action edit">수정하기</a>
-                        </div>
+            <div class="board-section">
+                <div class="board-header">
+                    <div class="board-total">총 <strong>3</strong>건</div>
+                    <div class="board-search">
+                        <select>
+                            <option>구분</option>
+                            <option>제목</option>
+                            <option>제목+내용</option>
+                        </select>
+                        <input type="text" placeholder="검색어를 입력하세요">
+                        <button>검색</button>
                     </div>
                 </div>
-                <div class="card-item">
-                    <div class="card-top">
-                        <span class="card-category youth">청소년 육성 지원사업</span>
-                        <span class="card-applicant">신청인: 홍길순</span>
-                        <span class="card-date">접수일 2025-10-11</span>
+                <div class="board-list">
+                    <div class="board-item">
+                        <span class="board-num">1</span>
+                        <span class="board-category seminar">좌담회</span>
+                        <a href="#" class="board-title">2025 하반기 좌담회 참가신청 모집합니다.</a>
+                        <span class="board-schedule">2025-10-15 ~ 2025-11-16</span>
+                        <span class="board-apply"><a href="javascript:void(0)" class="btn-apply" onclick="showApplicantView('2025 하반기 좌담회 참가신청 모집합니다.', 1)">수정하기</a></span>
                     </div>
-                    <a href="#" class="card-title">청소년 육성 지원사업 좌담회 공지합니다.</a>
-                    <div class="card-bottom">
-                        <span class="card-schedule"><strong>모집 일정</strong> 2025-10-11 ~ 2025-11-30</span>
-                        <div class="card-actions">
-                            <a href="#" class="btn-action view">상세보기</a>
-                            <a href="apply.html" class="btn-action edit">수정하기</a>
-                        </div>
+                    <div class="board-item">
+                        <span class="board-num">2</span>
+                        <span class="board-category ceremony">장학생 수여식</span>
+                        <a href="#" class="board-title">25회 장학생 수여식 모집합니다.</a>
+                        <span class="board-schedule">2025-10-11 ~ 2025-11-30</span>
+                        <span class="board-apply"><a href="javascript:void(0)" class="btn-apply" onclick="showApplicantView('25회 장학생 수여식 모집합니다.', 2)">수정하기</a></span>
                     </div>
+                    <div class="board-item">
+                        <span class="board-num">3</span>
+                        <span class="board-category seminar">좌담회</span>
+                        <a href="#" class="board-title">2025 상반기 좌담회 참가신청 모집합니다.</a>
+                        <span class="board-schedule">2025-04-01 ~ 2025-04-30</span>
+                        <span class="board-apply"><span class="btn-apply closed">수정마감</span></span>
+                    </div>
+                </div>
+                <div class="board-pagination">
+                    <a href="#" class="arrow">‹</a>
+                    <a href="#" class="active">1</a>
+                    <a href="#" class="arrow">›</a>
+                </div>
+            </div>
+
+            <!-- 신청자 리스트 뷰 -->
+            <div class="applicant-view" id="applicantView">
+                <button class="applicant-back" onclick="hideApplicantView()">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+                    </svg>
+                    목록으로 돌아가기
+                </button>
+                <h3 class="applicant-event-title" id="applicantEventTitle"></h3>
+                <div class="applicant-list" id="applicantList"></div>
+            </div>
+        </div>
+
+        <!-- 수여증 발급 Section -->
+        <div class="content-section section-hidden" id="certificate">
+            <div class="board-section">
+                <div class="board-header">
+                    <div class="board-total">총 <strong>3</strong>건</div>
+                </div>
+                <div class="board-list">
+                    <div class="cert-board-header-row">
+                        <span class="cert-col-check"><input type="checkbox" id="certCheckAll" onchange="toggleAllCert(this)"></span>
+                        <span class="cert-col-num">번호</span>
+                        <span class="cert-col-category">분류</span>
+                        <span class="cert-col-title">수여증명</span>
+                        <span class="cert-col-date">수여일</span>
+                    </div>
+                    <div class="cert-board-item">
+                        <span class="cert-col-check"><input type="checkbox" class="cert-check" value="1"></span>
+                        <span class="cert-col-num">1</span>
+                        <span class="cert-col-category"><span class="cert-cat-scholarship">장학금 수여</span></span>
+                        <span class="cert-col-title">2025 하반기 장학금 수여증</span>
+                        <span class="cert-col-date">2025.10.15</span>
+                    </div>
+                    <div class="cert-board-item">
+                        <span class="cert-col-check"><input type="checkbox" class="cert-check" value="2"></span>
+                        <span class="cert-col-num">2</span>
+                        <span class="cert-col-category"><span class="cert-cat-seminar">좌담회</span></span>
+                        <span class="cert-col-title">2024 하반기 좌담회 참석 수여증</span>
+                        <span class="cert-col-date">2024.08.20</span>
+                    </div>
+                    <div class="cert-board-item">
+                        <span class="cert-col-check"><input type="checkbox" class="cert-check" value="3"></span>
+                        <span class="cert-col-num">3</span>
+                        <span class="cert-col-category"><span class="cert-cat-ceremony">수여식</span></span>
+                        <span class="cert-col-title">23회 장학생 수여식 참석 수여증</span>
+                        <span class="cert-col-date">2023.03.15</span>
+                    </div>
+                </div>
+                <div class="cert-action">
+                    <button class="btn-download" onclick="downloadCert()">발급받기</button>
                 </div>
             </div>
         </div>
 
-        <!-- 개인 정보 관리 Section -->
+        <!-- 개인 정보 관리 - 본인 확인 -->
         <div class="content-section section-hidden" id="profile">
-            <div class="profile-section">
+            <div class="verify-section" id="verifySection">
+                <div class="verify-card">
+                    <div class="verify-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                        </svg>
+                    </div>
+                    <h2 class="verify-title">본인 확인</h2>
+                    <p class="verify-desc">개인정보 보호를 위해 본인 확인이 필요합니다.</p>
+                    <div class="verify-form">
+                        <div class="verify-group">
+                            <label for="verifyId" class="verify-label">아이디</label>
+                            <input type="text" id="verifyId" class="form-input" placeholder="아이디를 입력하세요">
+                        </div>
+                        <div class="verify-group">
+                            <label for="verifyPw" class="verify-label">비밀번호</label>
+                            <input type="password" id="verifyPw" class="form-input" placeholder="비밀번호를 입력하세요">
+                        </div>
+                        <div class="verify-group">
+                            <label for="verifyPwConfirm" class="verify-label">비밀번호 재확인</label>
+                            <input type="password" id="verifyPwConfirm" class="form-input" placeholder="비밀번호를 다시 입력하세요">
+                        </div>
+                        <button class="verify-button" onclick="verifyIdentity()">확인</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 개인 정보 관리 - 인적사항 (인증 후 표시) -->
+            <div class="profile-section" id="profileSection" style="display:none;">
                 <div class="profile-section-header">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
@@ -356,8 +524,76 @@
                 const targetId = this.getAttribute('data-target');
                 const targetSection = document.getElementById(targetId);
                 if (targetSection) targetSection.classList.remove('section-hidden');
+                // 신청내역 탭 전환 시 리스트 뷰 리셋
+                if (targetId === 'applications') {
+                    hideApplicantView();
+                }
+                // 개인정보 탭 전환 시 인증 화면으로 리셋
+                if (targetId === 'profile') {
+                    document.getElementById('verifySection').style.display = 'flex';
+                    document.getElementById('profileSection').style.display = 'none';
+                    document.getElementById('verifyId').value = '';
+                    document.getElementById('verifyPw').value = '';
+                    document.getElementById('verifyPwConfirm').value = '';
+                }
             });
         });
+
+        // Applicant data
+        var applicantData = {
+            1: [
+                { name: '홍길동', date: '2025-10-16' },
+                { name: '김영희', date: '2025-10-17' },
+                { name: '이철수', date: '2025-10-18' },
+                { name: '박지민', date: '2025-10-20' },
+                { name: '최수진', date: '2025-10-22' }
+            ],
+            2: [
+                { name: '홍길동', date: '2025-10-12' },
+                { name: '정민수', date: '2025-10-13' },
+                { name: '강서연', date: '2025-10-15' }
+            ]
+        };
+
+        function showApplicantView(eventTitle, eventId) {
+            document.querySelector('#applications .board-section').style.display = 'none';
+            var view = document.getElementById('applicantView');
+            view.classList.add('active');
+            document.getElementById('applicantEventTitle').textContent = eventTitle;
+            var list = document.getElementById('applicantList');
+            var data = applicantData[eventId] || [];
+            var html = '';
+            for (var i = 0; i < data.length; i++) {
+                html += '<div class="applicant-item">';
+                html += '<span class="applicant-num">' + (i + 1) + '</span>';
+                html += '<a href="apply.html" class="applicant-name">' + data[i].name + '</a>';
+                html += '<span class="applicant-date">신청접수일 ' + data[i].date + '</span>';
+                html += '</div>';
+            }
+            list.innerHTML = html;
+        }
+
+        function hideApplicantView() {
+            document.querySelector('#applications .board-section').style.display = 'block';
+            var view = document.getElementById('applicantView');
+            view.classList.remove('active');
+        }
+
+        // Certificate checkboxes
+        function toggleAllCert(el) {
+            document.querySelectorAll('.cert-check').forEach(function(cb) { cb.checked = el.checked; });
+        }
+        function downloadCert() {
+            var checked = document.querySelectorAll('.cert-check:checked');
+            if (checked.length === 0) { alert('발급받을 수여증을 선택해주세요.'); return; }
+            alert(checked.length + '건의 수여증을 발급합니다.');
+        }
+
+        // Verify identity
+        function verifyIdentity() {
+            document.getElementById('verifySection').style.display = 'none';
+            document.getElementById('profileSection').style.display = 'block';
+        }
 
         // Save changes
         function saveChanges() {
@@ -374,7 +610,7 @@
         // Hash navigation
         function handleHash() {
             const hash = window.location.hash.substring(1);
-            if (hash === 'applications' || hash === 'profile') {
+            if (hash === 'applications' || hash === 'certificate' || hash === 'profile') {
                 document.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
                 document.querySelectorAll('.content-section').forEach(s => s.classList.add('section-hidden'));
                 const targetTab = document.querySelector(`.tab-item[data-target="${hash}"]`);
