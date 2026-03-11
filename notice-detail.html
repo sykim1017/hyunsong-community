@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>장학 갤러리 - 현송교육문화재단 장학생 커뮤니티</title>
+    <title>공지사항 상세 - 현송교육문화재단 장학생 커뮤니티</title>
     <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
     <style>
         :root {
@@ -64,37 +64,74 @@
         .breadcrumb-home:hover { opacity: 0.8; }
         .breadcrumb-divider { color: var(--gray-border); font-size: 14px; }
         .breadcrumb-current { font-size: 14px; color: var(--gray-light); }
+        .breadcrumb-path { font-size: 14px; color: var(--gray); }
 
         /* Page Header */
-        .page-header { background: var(--white); padding: 40px 40px 40px; text-align: center; }
+        .page-header { background: var(--white); padding: 20px 40px 40px; text-align: center; }
         .page-header-inner { max-width: 1310px; margin: 0 auto; }
         .page-title { font-size: 34px; font-weight: 700; color: #222222; margin-bottom: 0; }
 
         .content-section { max-width: 1310px; margin: 0 auto; padding: 40px 40px 100px; }
 
-        /* Board Header */
-        .board-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
-        .board-total { font-size: 14px; color: var(--gray); }
-        .board-total strong { color: #222222; font-weight: 700; }
-        .board-search { display: flex; gap: 8px; }
-        .board-search select { padding: 10px 16px; padding-right: 36px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; color: var(--gray-dark); background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 12px center; -webkit-appearance: none; -moz-appearance: none; appearance: none; }
-        .board-search input { padding: 10px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; width: 200px; }
-        .board-search button { padding: 10px 20px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 14px; font-weight: 500; cursor: pointer; }
+        /* Post Category Path */
+        .post-category-path { font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 20px; }
+        .post-category-path span { color: var(--gray-light); }
 
-        /* Gallery Grid */
-        .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-bottom: 60px; padding-top: 20px; border-top: 2px solid #1F2657; }
-        .gallery-item { text-decoration: none; display: block; transition: transform 0.2s; }
-        .gallery-item:hover { transform: translateY(-4px); }
-        .gallery-thumbnail { width: 100%; aspect-ratio: 1; background: var(--bg); border-radius: 12px; overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
-        .gallery-thumbnail img { width: 100%; height: 100%; object-fit: cover; }
-        .gallery-thumbnail svg { width: 32px; height: 32px; fill: var(--gray-pale); }
-        .gallery-title { font-size: 16px; font-weight: 500; color: var(--black); text-align: center; }
+        /* Post Detail */
+        .post-header { border-top: 2px solid #222222; margin-bottom: 0; }
+        .post-title { font-size: 18px; font-weight: 700; color: #222222; padding: 20px 0; border-bottom: 1px solid var(--gray-border); }
+        .post-meta { display: flex; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--gray-border); font-size: 13px; color: var(--gray); gap: 0; }
+        .post-meta-item { display: flex; align-items: center; padding: 0 20px; border-right: 1px solid var(--gray-border); }
+        .post-meta-item:first-child { padding-left: 0; }
+        .post-meta-item:last-child { border-right: none; }
+        .post-meta-label { font-weight: 600; color: var(--gray-dark); margin-right: 8px; }
+        .post-meta-value { color: var(--gray); }
+        .post-content { min-height: 200px; padding: 40px 0; font-size: 16px; line-height: 1.8; color: var(--black); text-align: center; border-bottom: 2px solid #222222; }
 
-        /* Pagination */
-        .board-pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 40px; }
-        .board-pagination a { display: flex; align-items: center; justify-content: center; width: 36px; height: 36px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; color: var(--gray); text-decoration: none; transition: all 0.2s; }
-        .board-pagination a:hover { border-color: #17A6ED; color: #17A6ED; }
-        .board-pagination a.active { background: #17A6ED; border-color: #17A6ED; color: var(--white); }
+        /* Like Button */
+        .post-actions { display: flex; justify-content: center; padding: 24px 0; border-bottom: 1px solid var(--gray-border); }
+        .like-button { display: flex; align-items: center; gap: 6px; background: none; border: 1px solid var(--gray-border); border-radius: 50px; cursor: pointer; padding: 8px 18px; transition: all 0.2s; }
+        .like-button:hover { border-color: #EF4444; }
+        .like-button svg { width: 18px; height: 18px; }
+        .like-button .heart-outline { display: block; stroke: var(--gray-pale); fill: none; }
+        .like-button .heart-fill { display: none; fill: #EF4444; }
+        .like-button.active { border-color: #EF4444; }
+        .like-button.active .heart-outline { display: none; }
+        .like-button.active .heart-fill { display: block; }
+        .like-count { font-size: 13px; color: var(--gray); font-weight: 500; }
+        .like-button.active .like-count { color: #EF4444; }
+
+        /* Comments */
+        .comments-section { margin-top: 0; }
+        .comments-header { display: flex; align-items: center; gap: 6px; padding: 20px 0 16px; }
+        .comments-title { font-size: 16px; font-weight: 700; color: #222222; }
+        .comments-count { font-size: 16px; font-weight: 700; color: var(--primary); }
+
+        .comment-list { }
+        .comment-item { padding: 20px 0; border-top: 1px solid var(--gray-border); }
+        .comment-item-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+        .comment-author-info { display: flex; align-items: center; gap: 10px; }
+        .comment-avatar { width: 28px; height: 28px; border-radius: 50%; background: var(--bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .comment-avatar svg { width: 14px; height: 14px; fill: var(--gray-pale); }
+        .comment-author { font-size: 14px; font-weight: 600; color: #222222; }
+        .comment-date { font-size: 12px; color: var(--gray-light); }
+        .comment-actions { display: flex; gap: 12px; }
+        .comment-action-btn { background: none; border: none; font-size: 12px; color: var(--gray-light); cursor: pointer; padding: 0; transition: color 0.2s; }
+        .comment-action-btn:hover { color: var(--primary); }
+        .comment-text { font-size: 14px; color: var(--gray-dark); line-height: 1.7; padding-left: 38px; }
+
+        /* Reply (대댓글) */
+        .comment-reply { margin-left: 38px; padding: 16px 20px; background: var(--bg); border-radius: 8px; margin-top: 12px; }
+        .comment-reply .comment-item-header { margin-bottom: 6px; }
+        .comment-reply .comment-text { padding-left: 0; font-size: 13px; }
+
+        /* Comment Form */
+        .comment-form { margin-top: 8px; padding: 20px; background: var(--bg); border-radius: 12px; }
+        .comment-input { width: 100%; min-height: 80px; padding: 14px 16px; border: 1px solid var(--gray-border); border-radius: 8px; font-size: 14px; font-family: 'Pretendard', sans-serif; resize: vertical; background: var(--white); color: var(--black); }
+        .comment-input:focus { outline: none; border-color: var(--primary); }
+        .comment-form-footer { display: flex; justify-content: flex-end; margin-top: 12px; }
+        .comment-submit { padding: 10px 24px; background: #1F2657; color: var(--white); border: none; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; transition: opacity 0.2s; }
+        .comment-submit:hover { opacity: 0.9; }
 
         /* Footer */
         .footer { background: var(--gray-dark); padding: 50px 40px; margin-top: auto; }
@@ -121,14 +158,11 @@
             .hamburger { display: flex; }
             .mobile-nav { display: block; }
             .footer-nav { display: none; }
-            .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
         }
         @media (max-width: 768px) {
             .content-section { padding: 40px 20px; }
-            .board-header { flex-direction: column; align-items: flex-start; gap: 16px; }
-            .board-search { width: 100%; }
-            .board-search input { flex: 1; width: auto; }
-            .gallery-grid { grid-template-columns: 1fr; }
+            .post-title { font-size: 22px; }
+            .post-meta { flex-direction: column; align-items: flex-end; gap: 8px; }
             .footer { padding: 40px 20px; }
             .footer-bottom { flex-direction: column; align-items: flex-start; gap: 16px; }
             .footer-copyright { flex-direction: column; align-items: flex-start; gap: 16px; }
@@ -153,10 +187,10 @@
                     <a href="board.html">자유게시판</a>
                 </div>
                 <div class="nav-item">
-                    <a href="gallery.html" class="active">장학 갤러리</a>
+                    <a href="gallery.html">장학 갤러리</a>
                 </div>
                 <div class="nav-item">
-                    <a href="community.html">커뮤니티</a>
+                    <a href="community.html" class="active">커뮤니티</a>
                     <div class="sub-menu">
                         <a href="community.html#notice">공지사항</a>
                         <a href="community.html#news">재단소식</a>
@@ -187,8 +221,8 @@
         <a href="scholarship-search.html">장학생 찾기</a>
         <a href="hero.html">현송 영웅</a>
         <a href="board.html">자유게시판</a>
-        <a href="gallery.html" class="active">장학 갤러리</a>
-        <a href="community.html">커뮤니티</a>
+        <a href="gallery.html">장학 갤러리</a>
+        <a href="community.html" class="active">커뮤니티</a>
         <div class="mobile-nav-utils">
             <a href="login.html">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -214,111 +248,143 @@
                         <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
                     </svg>
                 </a>
-                <span class="breadcrumb-divider">|</span>
-                <span class="breadcrumb-current">장학 갤러리</span>
+                <span class="breadcrumb-divider">></span>
+                <span class="breadcrumb-path">커뮤니티</span>
+                <span class="breadcrumb-divider">></span>
+                <span class="breadcrumb-current">공지사항</span>
             </div>
         </div>
-        <div class="page-header">
-            <div class="page-header-inner">
-                <h1 class="page-title">장학 갤러리</h1>
-            </div>
-        </div>
+
+        <!-- page-header removed on detail page -->
 
         <div class="content-section">
-            <div class="board-header">
-                <div class="board-total">총 <strong>27</strong>건</div>
-                <div class="board-search">
-                    <select>
-                        <option>구분</option>
-                        <option>제목</option>
-                        <option>내용</option>
-                    </select>
-                    <input type="text" placeholder="검색어를 입력하세요">
-                    <button>검색</button>
+            <div class="post-category-path">커뮤니티 <span>&gt;</span> 공지사항</div>
+
+            <article class="post-detail">
+                <div class="post-header">
+                    <h2 class="post-title">2025년 장학생 커뮤니티 홈페이지 정기점검 안내</h2>
+                    <div class="post-meta">
+                        <div class="post-meta-item">
+                            <span class="post-meta-label">작성자</span>
+                            <span class="post-meta-value">관리자</span>
+                        </div>
+                        <div class="post-meta-item">
+                            <span class="post-meta-label">작성일</span>
+                            <span class="post-meta-value">2025.04.11</span>
+                        </div>
+                        <div class="post-meta-item">
+                            <span class="post-meta-label">조회수</span>
+                            <span class="post-meta-value">189</span>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="post-content">
+                    <p>안녕하세요, 현송교육문화재단입니다.<br><br>홈페이지 서비스 개선을 위한 정기 점검이 예정되어 있어 안내드립니다.<br><br>점검 일시: 2025년 4월 15일 (화) 00:00 ~ 06:00<br>점검 내용: 시스템 업데이트 및 보안 패치<br><br>점검 시간 동안 홈페이지 이용이 일시적으로 제한될 수 있습니다.<br>이용에 불편을 드려 죄송합니다.<br><br>감사합니다.</p>
+                </div>
+            </article>
+
+            <!-- 좋아요 -->
+            <div class="post-actions">
+                <button class="like-button" id="likeButton">
+                    <svg class="heart-outline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                    </svg>
+                    <svg class="heart-fill" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" />
+                    </svg>
+                    <span class="like-count" id="likeCount">12</span>
+                </button>
             </div>
 
-            <div class="gallery-grid">
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">2025년 상반기 장학생 좌담회</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">현송재단 장학증서 수여식</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">장학생 네트워킹 데이</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">2024 하반기 장학생 모임</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">장학생 멘토링 프로그램</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">현송재단 창립 기념식</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">장학생 해외 연수 프로그램</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">2024 장학생 송년회</div>
-                </a>
-                <a href="gallery-detail.html" class="gallery-item">
-                    <div class="gallery-thumbnail">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                            <path fill-rule="evenodd" d="M1.5 6a2.25 2.25 0 0 1 2.25-2.25h16.5A2.25 2.25 0 0 1 22.5 6v12a2.25 2.25 0 0 1-2.25 2.25H3.75A2.25 2.25 0 0 1 1.5 18V6ZM3 16.06V18c0 .414.336.75.75.75h16.5A.75.75 0 0 0 21 18v-1.94l-2.69-2.689a1.5 1.5 0 0 0-2.12 0l-.88.879.97.97a.75.75 0 1 1-1.06 1.06l-5.16-5.159a1.5 1.5 0 0 0-2.12 0L3 16.061Zm10.125-7.81a1.125 1.125 0 1 1 2.25 0 1.125 1.125 0 0 1-2.25 0Z" clip-rule="evenodd" />
-                        </svg>
-                    </div>
-                    <div class="gallery-title">장학생 봉사활동</div>
-                </a>
-            </div>
+            <!-- 댓글 -->
+            <div class="comments-section">
+                <div class="comments-header">
+                    <h3 class="comments-title">댓글</h3>
+                    <span class="comments-count">3</span>
+                </div>
 
-            <div class="board-pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">&raquo;</a>
+                <div class="comment-list">
+                    <div class="comment-item">
+                        <div class="comment-item-header">
+                            <div class="comment-author-info">
+                                <div class="comment-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="comment-author">남희정</span>
+                                <span class="comment-date">2025.04.12</span>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn">답글</button>
+                                <button class="comment-action-btn">신고</button>
+                            </div>
+                        </div>
+                        <div class="comment-text">점검 안내 감사합니다. 참고하겠습니다!</div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-item-header">
+                            <div class="comment-author-info">
+                                <div class="comment-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="comment-author">김영수</span>
+                                <span class="comment-date">2025.04.12</span>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn">답글</button>
+                                <button class="comment-action-btn">신고</button>
+                            </div>
+                        </div>
+                        <div class="comment-text">새벽 시간이라 다행이네요. 감사합니다.</div>
+
+                        <!-- 대댓글 -->
+                        <div class="comment-reply">
+                            <div class="comment-item-header">
+                                <div class="comment-author-info">
+                                    <div class="comment-avatar">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                        </svg>
+                                    </div>
+                                    <span class="comment-author">관리자</span>
+                                    <span class="comment-date">2025.04.12</span>
+                                </div>
+                            </div>
+                            <div class="comment-text">네, 이용에 불편 최소화하기 위해 새벽 시간에 진행합니다.</div>
+                        </div>
+                    </div>
+
+                    <div class="comment-item">
+                        <div class="comment-item-header">
+                            <div class="comment-author-info">
+                                <div class="comment-avatar">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
+                                <span class="comment-author">이수진</span>
+                                <span class="comment-date">2025.04.13</span>
+                            </div>
+                            <div class="comment-actions">
+                                <button class="comment-action-btn">답글</button>
+                                <button class="comment-action-btn">신고</button>
+                            </div>
+                        </div>
+                        <div class="comment-text">안내 감사합니다. 점검 후 개선된 부분이 있으면 알려주세요!</div>
+                    </div>
+                </div>
+
+                <div class="comment-form">
+                    <textarea class="comment-input" placeholder="댓글을 입력하세요"></textarea>
+                    <div class="comment-form-footer">
+                        <button class="comment-submit">등록</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
@@ -374,6 +440,12 @@
                 mobileNav.classList.remove('active');
                 document.body.classList.remove('menu-open');
             }
+        });
+
+        // Like button toggle
+        const likeButton = document.getElementById('likeButton');
+        likeButton.addEventListener('click', function() {
+            this.classList.toggle('active');
         });
     </script>
 </body>
